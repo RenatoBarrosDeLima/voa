@@ -3,7 +3,7 @@ import User from '../models/User';
 class UserController {
   async index(req, res) {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({ attributes: ['id', 'nome', 'email', 'cpf'] });
       return res.json(users);
     } catch (err) {
       return res.json(null);
@@ -12,9 +12,14 @@ class UserController {
 
   async show(req, res) {
     try {
-      const { id } = req.params;
-      const user = await User.findByPk(id);
-      return res.json(user);
+      const user = await User.findByPk(req.params.id);
+
+      const {
+        id, nome, email, cpf,
+      } = user;
+      return res.json({
+        id, nome, email, cpf,
+      });
     } catch (err) {
       return res.json(null);
     }
@@ -31,24 +36,15 @@ class UserController {
 
   async update(req, res) {
     try {
-      const { id } = req.params;
-
-      if (!id) {
-        return res.status(400).json({
-          errors: ['ID não enviado.'],
-        });
-      }
-
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(req.userId);
 
       if (!user) {
         return res.status(400).json({
-          errors: ['Usuáio não existe'],
+          errors: ['Usuário não existe'],
         });
       }
 
       const novosDados = await user.update(req.body);
-
       return res.json(novosDados);
     } catch (err) {
       return res.status(400).json({
