@@ -1,3 +1,0 @@
-npx sequelize migration:create --name=users
-
-npx sequelize db:migrate
