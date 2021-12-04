@@ -1,27 +1,31 @@
 import React from "react";
 
-import Header from '../../layout/Header';
+import Header from '../../layout/HeaderHome';
 import Footer from '../../layout/Footer';
 import CoverContainer from '../../components/CoverContainer';
 import Session from '../../components/Session';
 import Campaigns from '../../components/Campaigns';
 import ButtonAllCampaigns from '../../components/ButtonAllCampaigns';
+import {
+  Container,
+  Content
+} from './styles'
 
 
 const Home = () => {
   return (
-    <div style={{boxSizing: 'border-box', display:'block'}}>
+    <Container>
       <Header />
-      <div style={{ marginTop: '80px' }}>
+      <Content>
         <CoverContainer />
-        <Session title={"Vaquinhas em Destaque"}/>
+        <Session title={"Vaquinhas em Destaque"} />
         <Campaigns />
         <ButtonAllCampaigns />
-        <Session title={"Vaquinhas que Voaram"}/>
+        <Session title={"Vaquinhas que Voaram"} />
         <Campaigns />
         <Footer />
-      </div>
-    </div>
+      </Content>
+    </Container>
   )
 }
 
