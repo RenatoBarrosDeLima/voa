@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+// Funções
+import { moneyFormat } from '../../utils/functions'
+
+// Componentes
 import Header from '../../layout/HeaderHome';
 import Footer from '../../layout/Footer';
 import ButtonContribution from '../../components/ButtonContribution';
+
+// Componentes de customizados
 import {
   Container,
   Content,
@@ -54,10 +60,17 @@ import {
   ContainerButtons,
   ButtonAdd,
   ButtonFinish
-
 } from './styles'
 
 const Donation = () => {
+
+  const [valueSelected, setValueSelected] = useState("");
+
+  const changeValue = (item) => {
+    setValueSelected(item);
+  }
+
+
   return (
     <Container>
       <Header />
@@ -132,7 +145,7 @@ const Donation = () => {
 
                       <TextValue> Quero contribuir com </TextValue>
 
-                     <ButtonContribution />
+                      <ButtonContribution changeValue={changeValue} valueSelected={valueSelected} />
 
                       <Anonymous>
                         <CheckBoxWrapper>
@@ -162,14 +175,14 @@ const Donation = () => {
                             Sua contribuição
                           </TextContribution>
                           <TextContributionValue>
-                            R$ 12,50
+                            {moneyFormat(valueSelected)}
                           </TextContributionValue>
                         </GridInlineResume>
                       </ContentDonationResume>
 
                       <ContributionTotalResume>
                         <ContributionTotalResumeTitle> VALOR TOTAL </ContributionTotalResumeTitle>
-                        <ContributionTotalResumeValue> R$ 12,50 </ContributionTotalResumeValue>
+                        <ContributionTotalResumeValue>  {moneyFormat(valueSelected)} </ContributionTotalResumeValue>
                       </ContributionTotalResume>
                     </ContainerDonationResume>
 

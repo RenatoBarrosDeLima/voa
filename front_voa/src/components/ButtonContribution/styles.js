@@ -8,16 +8,13 @@ export const ValuesContainer = styled.div`
 `;
 
 export const CardValue = styled.div`
-    background-color: rgb(245, 242, 247);
+    background-color:  rgb(245, 242, 247);
     border: 1.5px solid rgba(113, 113, 117, 0.2);
     font-size: 16px;
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-weight: 300;
-    color: rgb(0, 0, 0);
     display: flex;
-    -webkit-box-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
     align-items: center;
     border-radius: 12px;
     cursor: pointer;
@@ -25,6 +22,10 @@ export const CardValue = styled.div`
     height: 60px;
     float: left;
     margin: 0px 1% 2% 0px;
+    color: ${props => props.$isSelected ? '#fff' : 'rgb(0, 0, 0)'};
+    background-image: ${props => props.$isSelected ? 'linear-gradient(to right, rgb(123, 9, 126), rgb(204, 53, 119))' : ''};
+
+    ;
 `;
 
 export const Input = styled.input`
