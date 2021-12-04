@@ -8,10 +8,6 @@ import {
 
 const ButtonContribution = ({ changeValue, valueSelected }) => {
 
-  const inputValue = (item) => {
-    console.log(item)
-  }
-
   return (
     <ValuesContainer >
       <CardValue onClick={() => changeValue(25)} $isSelected={valueSelected === 25 ? true : false}>

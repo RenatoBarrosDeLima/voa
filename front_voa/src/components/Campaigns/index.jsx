@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Container,
@@ -31,57 +32,61 @@ import {
 } from './styles'
 
 const Campaigns = () => {
+
+
   return (
     <Container>
       <Content>
         <SwiperContainer>
           <SwiperWrapper>
 
+            <Link to="/campanha/123">
+              <SwiperSlide>
+                <LazyloadWrapper>
+                  <SlideA>
+                    <ImageContainer>
+                      <ImageContent>
+                        <Image src={"https://voaa.me/_next/image?url=https%3A%2F%2Fs3.sa-east-1.amazonaws.com%2Fuploads.voaa.me%2Fcampaign%2F9450%2F3ce27464-5ff2-445d-9f57-3d2a21f46a8d-C%25C3%25B3pia%2520de%2520CAPAS%2520-%25202021-12-02T141608.543.jpg&w=3840&q=100"} />
+                      </ImageContent>
+                      <DayRemaining>
+                        30 dias restantes
+                      </DayRemaining>
+                    </ImageContainer>
+                    <CardBody>
+                      <TextSpan>MOBILIDADE</TextSpan>
+                      <TextH3> O Sr. José recolhe latinhas há 7 anos, para doar ao hospital do câncer. Vamos ajudá-lo nessa missão? </TextH3>
+                      <Resume>
+                        <TextP> Sr. José Carlos é vigilante e começou a recolher latinhas, nos seus dias de folga, com o propósito de ajudar o hospital do câncer, mesmo em um momento tão difícil de sua vida. Queremos ajudá-lo a comprar um caminhãozinho, para ele conseguir levar mais materiais, pois atualmente, ele usa uma moto, onde não cabe tudo. Vamos nessa? </TextP>
+                      </Resume>
 
-            <SwiperSlide>
-              <LazyloadWrapper>
-                <SlideA href="#">
-                  <ImageContainer>
-                    <ImageContent>
-                      <Image src={"https://voaa.me/_next/image?url=https%3A%2F%2Fs3.sa-east-1.amazonaws.com%2Fuploads.voaa.me%2Fcampaign%2F9450%2F3ce27464-5ff2-445d-9f57-3d2a21f46a8d-C%25C3%25B3pia%2520de%2520CAPAS%2520-%25202021-12-02T141608.543.jpg&w=3840&q=100"} />
-                    </ImageContent>
-                    <DayRemaining>
-                      30 dias restantes
-                    </DayRemaining>
-                  </ImageContainer>
-                  <CardBody>
-                    <TextSpan>MOBILIDADE</TextSpan>
-                    <TextH3> O Sr. José recolhe latinhas há 7 anos, para doar ao hospital do câncer. Vamos ajudá-lo nessa missão? </TextH3>
-                    <Resume>
-                      <TextP> Sr. José Carlos é vigilante e começou a recolher latinhas, nos seus dias de folga, com o propósito de ajudar o hospital do câncer, mesmo em um momento tão difícil de sua vida. Queremos ajudá-lo a comprar um caminhãozinho, para ele conseguir levar mais materiais, pois atualmente, ele usa uma moto, onde não cabe tudo. Vamos nessa? </TextP>
-                    </Resume>
+                      <ContainerCardProgressBar>
+                        <FundraisingTarget>
+                          <TextValue> R$ 352,01</TextValue>
+                          <Percentage> 0% </Percentage>
+                        </FundraisingTarget>
 
-                    <ContainerCardProgressBar>
-                      <FundraisingTarget>
-                        <TextValue> R$ 352,01</TextValue>
-                        <Percentage> 0% </Percentage>
-                      </FundraisingTarget>
+                        <ProgressBar>
+                          <Progress />
+                        </ProgressBar>
 
-                      <ProgressBar>
-                        <Progress />
-                      </ProgressBar>
+                        <ContentDetail>
+                          <GoalDetail>
+                            <GoalValue>
+                              R$ 120.000,00
+                            </GoalValue>
+                            <GoalText>
+                              META
+                            </GoalText>
+                          </GoalDetail>
+                        </ContentDetail>
 
-                      <ContentDetail>
-                        <GoalDetail>
-                          <GoalValue>
-                            R$ 120.000,00
-                          </GoalValue>
-                          <GoalText>
-                            META
-                          </GoalText>
-                        </GoalDetail>
-                      </ContentDetail>
+                      </ContainerCardProgressBar>
+                    </CardBody>
+                  </SlideA>
+                </LazyloadWrapper>
+              </SwiperSlide>
+            </Link>
 
-                    </ContainerCardProgressBar>
-                  </CardBody>
-                </SlideA>
-              </LazyloadWrapper>
-            </SwiperSlide>
 
             <SwiperSlide>
               <LazyloadWrapper>

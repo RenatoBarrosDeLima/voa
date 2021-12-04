@@ -8,6 +8,8 @@ import Header from '../../layout/HeaderHome';
 import Footer from '../../layout/Footer';
 import ButtonContribution from '../../components/ButtonContribution';
 
+import { useQuery } from '../../hooks/useQueryURL';
+
 // Componentes de customizados
 import {
   Container,
@@ -64,7 +66,15 @@ import {
 
 const Donation = () => {
 
+  const query = useQuery();
+
+  console.log("ID da campanha ", query.get('id'));
+
   const [valueSelected, setValueSelected] = useState("");
+
+
+
+
 
   const changeValue = (item) => {
     setValueSelected(item);
