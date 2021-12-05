@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 // Funções
 import { moneyFormat } from '../../utils/functions'
@@ -9,7 +9,8 @@ import Header from '../../layout/HeaderHome';
 import Footer from '../../layout/Footer';
 import ButtonContribution from '../../components/ButtonContribution';
 
-// import { useQuery } from '../../hooks/useQueryURL';
+import { useCart } from '../../hooks/useCart';
+import { useQuery } from '../../hooks/useQueryURL';
 // import { useAuth } from '../../hooks/useAuth';
 
 // Componentes de customizados
@@ -68,8 +69,8 @@ import {
 
 const Donation = () => {
 
-
-  // const query = useQuery();
+  const { onAddToCart } = useCart();
+  const query = useQuery();
 
   // console.log("ID da campanha ", query.get('id'));
   // console.log("Auth ", useAuth());
@@ -83,8 +84,9 @@ const Donation = () => {
 
   const finishContribution = () => {
     if (!valueSelected) {
-      return window.alert('Informe um valor!');
+      return window.alert('Escolha um valor para doação');
     }
+    onAddToCart(query.get('id'), valueSelected);
     history.push('/finish')
   }
 
@@ -205,7 +207,7 @@ const Donation = () => {
                     </ContainerDonationResume>
 
                     <ContainerButtons>
-                      <ButtonAdd href="#"> ADICIONAR AO CARRINHO </ButtonAdd>
+                      {/* <ButtonAdd href="#"> ADICIONAR AO CARRINHO </ButtonAdd> */}
                       <ButtonFinish onClick={() => finishContribution()}> FINALIZAR CONTRIBUIÇÃO </ButtonFinish>
 
                     </ContainerButtons>

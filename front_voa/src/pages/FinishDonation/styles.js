@@ -68,6 +68,7 @@ export const GridHeade = styled.div`
 export const ButtonA = styled.a`
     color: inherit;
     text-decoration: none;
+    cursor: pointer;
 
     @media (min-width: 600px) {
         max-width: 400px;
