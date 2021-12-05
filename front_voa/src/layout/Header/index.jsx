@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { useAuth } from '../../hooks/useAuth';
 import {
   Container,
   Content,
@@ -15,7 +16,7 @@ import {
 } from './styles'
 
 const Header = () => {
-
+  const { getAuth, isAuthenticated } = useAuth();
 
   return (
     <Container>
@@ -30,7 +31,9 @@ const Header = () => {
             <Ul>
               <div>
                 <Li>
-                  <LinkP href="#"> Home </LinkP>
+                  <Link to="/">
+                    <LinkP href="#"> Home </LinkP>
+                  </Link>
                 </Li>
               </div>
 
@@ -55,9 +58,13 @@ const Header = () => {
             </Ul>
           </Center>
           <Rigth>
-            <Link to="/login">
-              <Button>Login</Button>
-            </Link>
+            {isAuthenticated() ? (
+              <Button> {getAuth()?.nome} </Button>
+            ) :
+              <Link to="/login">
+                <Button>Login</Button>
+              </Link>
+            }
           </Rigth>
         </Items>
       </Content>

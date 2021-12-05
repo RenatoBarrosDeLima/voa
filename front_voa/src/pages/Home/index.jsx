@@ -1,6 +1,6 @@
 import React from "react";
 
-import Header from '../../layout/HeaderHome';
+import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import CoverContainer from '../../components/CoverContainer';
 import Session from '../../components/Session';

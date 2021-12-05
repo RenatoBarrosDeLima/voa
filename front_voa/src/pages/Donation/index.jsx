@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { moneyFormat } from '../../utils/functions'
 
 // Componentes
-import Header from '../../layout/HeaderHome';
+import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import ButtonContribution from '../../components/ButtonContribution';
 

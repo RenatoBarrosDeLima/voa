@@ -18,7 +18,6 @@ const Routes = () => {
         <Route path="/cadastro" component={Register} />
       </Switch>
     </BrowserRouter>
-
   )
 }
 

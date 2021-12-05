@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Header from '../../layout/HeaderHome';
+import Header from '../../layout/Header';
 
 import {
   Container,

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import Header from '../../layout/HeaderHome';
+import { useAuth } from '../../hooks/useAuth';
+import api from '../../services/api';
+import Header from '../../layout/Header';
+import Loading from '../../components/LoadingScreen';
 
 import {
   Container,
@@ -25,21 +28,46 @@ import {
 } from './styles';
 
 const Login = () => {
-
+  const history = useHistory()
+  const { onAddToAuth } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleVisible = () => {
     setVisible(!visible);
   }
 
+  const handleSign = () => {
+    setLoading(true);
+
+    if (email == '' || password == '') {
+      return window.alert('Informe Email e Senha para continuar!');
+    }
+
+    api.post("/tokens/login", {
+      email,
+      password,
+    })
+      .then(response => {
+        onAddToAuth(response.data)
+        history.goBack();
+        setLoading(false);
+      })
+      .catch(err => {
+        setLoading(false);
+        return window.alert('Email ou Senha incorreto!');
+      })
+  }
+
   return (
     <Container>
+      <Loading loading={loading} />
+
       <Header />
       <Content>
         <TitleContent>
-          <svg alt="voltar" width="12" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 9.6a1.2 1.2 0 0 1 .352-.852l7.393-7.396a1.202 1.202 0 1 1 1.7 1.7L3.906 9.6l6.541 6.537a1.202 1.202 0 0 1-1.7 1.7l-7.395-7.39A1.2 1.2 0 0 1 1 9.6v0z" fill="#CC3577" stroke="#CC3577" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
           <TextH4Content>
             Faça login para Continuar
           </TextH4Content>
@@ -48,7 +76,7 @@ const Login = () => {
         <Form>
           <div>
             <DivInput>
-              <InputName type="email" />
+              <InputName onChange={(e) => setEmail(e.target.value)} type="email" />
               <LabelInput>
                 <TextSpanInput>E-mail </TextSpanInput>
               </LabelInput>
@@ -58,7 +86,7 @@ const Login = () => {
           <div>
             <PasswordWrapper>
               <DivInput>
-                <InputName type={visible ? 'text' : 'password'} />
+                <InputName onChange={(e) => setPassword(e.target.value)} type={visible ? 'text' : 'password'} />
                 <LabelInput>
                   <TextSpanInput>Senha </TextSpanInput>
                 </LabelInput>
@@ -69,13 +97,11 @@ const Login = () => {
 
             </PasswordWrapper>
           </div>
-
-
         </Form>
 
         <GroupButtons>
           <ButtonSign>
-            <Sign>
+            <Sign onClick={() => handleSign()}>
               ENTRAR
             </Sign>
           </ButtonSign>

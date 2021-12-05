@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+
 import { useCart } from '../../hooks/useCart';
+import { useAuth } from '../../hooks/useAuth';
 import { moneyFormat } from '../../utils/functions'
 
 import {
@@ -44,18 +46,29 @@ const FinishDonation = () => {
 
   const history = useHistory();
   const { getCart, removeCart } = useCart();
+  const { isAuthenticated, getAuth } = useAuth();
 
-  const editContribution = () => {
+  const handleEditContribution = () => {
     history.goBack();
   }
 
-  const deleteContribution = () => {
+  const handleDeleteContribution = () => {
     const answer = window.confirm("Deseja remover o carrinho?");
 
     if (answer) {
       history.goBack();
       removeCart();
     }
+  }
+
+  const handleFinishContribution = () => {
+
+    if (isAuthenticated()) {
+      console.log("Est está autenticado");
+    } else {
+      history.push('/login');
+    }
+
   }
 
 
@@ -93,13 +106,13 @@ const FinishDonation = () => {
                       </GridColInlineLeft>
 
                       <GridColInlineRigth>
-                        <ButtonEdit onClick={() => editContribution()}>
+                        <ButtonEdit onClick={() => handleEditContribution()}>
                           <svg alt="editar contribuição" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="m8.742 2.802 3.847 3.847-8.354 8.353-3.43.379a.72.72 0 0 1-.8-.8l.382-3.432 8.355-8.347zm6.226-.573L13.162.423a1.443 1.443 0 0 0-2.041 0l-1.7 1.7 3.847 3.847 1.7-1.7a1.443 1.443 0 0 0 0-2.041z" fill="#7D2A8A"></path>
                           </svg>
                         </ButtonEdit>
 
-                        <ButtonDelete onClick={() => deleteContribution()}>
+                        <ButtonDelete onClick={() => handleDeleteContribution()}>
                           <svg alt="remover do carrinho" width="16" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14.836 1.1h-4.121l-.323-.643A.824.824 0 0 0 9.654 0H5.728a.815.815 0 0 0-.735.457l-.322.643H.549A.549.549 0 0 0 0 1.648v1.1a.549.549 0 0 0 .549.552h14.287a.549.549 0 0 0 .549-.549v-1.1a.548.548 0 0 0-.549-.551zM1.827 16.038a1.648 1.648 0 0 0 1.645 1.545h8.441a1.648 1.648 0 0 0 1.645-1.545L14.286 4.4H1.1l.727 11.638z" fill="#CC3577"></path>
                           </svg>
@@ -140,7 +153,7 @@ const FinishDonation = () => {
             <GridButtonFinish>
               <GridRowButtonFinish>
                 <GridColButtonFinish>
-                  <ButtonFinish href="#">
+                  <ButtonFinish onClick={() => handleFinishContribution()}>
                     <TextPFinish>
                       FINALIZAR CONTRIBUIÇÃO
                     </TextPFinish>
