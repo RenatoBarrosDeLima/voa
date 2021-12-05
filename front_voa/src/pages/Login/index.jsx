@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import Header from '../../layout/HeaderHome';
+
 import {
   Container,
   Content,
@@ -31,6 +33,7 @@ const Login = () => {
 
   return (
     <Container>
+      <Header />
       <Content>
         <TitleContent>
           <svg alt="voltar" width="12" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">

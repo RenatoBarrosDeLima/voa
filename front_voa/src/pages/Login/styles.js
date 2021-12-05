@@ -196,9 +196,3 @@ export const Register = styled.a`
     color: rgb(223, 147, 46);
     font-weight: 700;
 `;
-
-
-
-
-
-
