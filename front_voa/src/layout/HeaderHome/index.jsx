@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Container,
@@ -10,11 +11,12 @@ import {
   Li,
   LinkP,
   Rigth,
-  SVG,
   Button
 } from './styles'
 
 const Header = () => {
+
+
   return (
     <Container>
       <Content>
@@ -53,13 +55,9 @@ const Header = () => {
             </Ul>
           </Center>
           <Rigth>
-            <SVG alt="pesquisar" xmlns="http://www.w3.org/2000/svg" width="18.383" height="18.956">
-              <g transform="translate(-269.5 -28.5)">
-                <circle cx="6.788" cy="6.788" r="6.788" transform="translate(271 30)" style={{ fill: 'none', stroke: 'rgb(140, 30, 126)', strokeWidth: '3px' }}></circle>
-                <rect width="6.943" height="3.156" rx="1.578" transform="rotate(45 92.822 361.737)" style={{ fill: 'rgb(140, 30, 126)' }}></rect>
-              </g>
-            </SVG>
-            <Button>Login</Button>
+            <Link to="/login">
+              <Button>Login</Button>
+            </Link>
           </Rigth>
         </Items>
       </Content>

@@ -100,10 +100,6 @@ export const Rigth = styled.div`
     z-index: 100;
 `;
 
-export const SVG = styled.svg`
-    margin-right: 10px;
-`;
-
 export const Button = styled.button`
     border: 0px;
     padding: 0px;

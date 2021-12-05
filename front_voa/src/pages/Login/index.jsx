@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Header from '../../layout/HeaderHome';
 
@@ -83,9 +84,11 @@ const Login = () => {
             <TextP>
               Novo por aqui?
             </TextP>
-            <Register>
-            Cadastre-se
-            </Register>
+            <Link to="/cadastro">
+              <Register>
+                Cadastre-se
+              </Register>
+            </Link>
           </ButtonRegister>
         </GroupButtons>
 

@@ -17,7 +17,9 @@ import {
   TextSpanInput,
   ContainerPassword,
   IconVisible,
-  Image
+  Image,
+  ContainerButton,
+  ButtonFinish
 } from './styles';
 
 const Register = () => {
@@ -125,11 +127,13 @@ const Register = () => {
                 </IconVisible>
               </ContainerInput>
             </ContainerPassword>
-
           </ContentForm>
 
-
-
+          <ContainerButton>
+            <ButtonFinish>
+              Cadastrar
+            </ButtonFinish>
+          </ContainerButton>
         </Form>
       </Content>
     </Container>

@@ -6,7 +6,6 @@ export const Container = styled.div`
     justify-content: center;
 
     @media (min-width: 900px) {
-        /* background-color: rgb(247, 247, 247); */
         height: 100%;
     }
 `;
@@ -147,4 +146,34 @@ export const IconVisible = styled.div`
 export const Image = styled.img`
     width: 20px;
     height: 35px;
+`;
+
+export const ContainerButton = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+`;
+
+export const ButtonFinish = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 14px;
+    letter-spacing: 1.4px;
+    text-decoration: none;
+    height: 55px;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    border-radius: 50px;
+    max-width: 300px;
+    font-weight: 600;
+    color: rgb(247, 248, 250);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-image: linear-gradient(263deg, rgb(171, 49, 101) 10%, rgb(125, 42, 138) 100%);
+    background-color: rgb(123, 9, 126);
+    box-shadow: rgb(125 42 138 / 30%) 0px 12px 30px 0px;
 `;
