@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useCart } from '../../hooks/useCart';
 import { useAuth } from '../../hooks/useAuth';
 import { moneyFormat } from '../../utils/functions'
+
+import ButtonFinishContribution from '../../components/ButtonFinishContribution'
+import Payment from '../../components/Payment'
 
 import {
   Container,
@@ -34,12 +37,6 @@ import {
   GridColInlineTotal,
   TextH4Total,
   TextH4ValueTotal,
-  GridButtonFinish,
-  GridRowButtonFinish,
-  GridColButtonFinish,
-  ButtonFinish,
-  TextPFinish
-
 } from './styles'
 
 const FinishDonation = () => {
@@ -47,6 +44,7 @@ const FinishDonation = () => {
   const history = useHistory();
   const { getCart, removeCart } = useCart();
   const { isAuthenticated, getAuth } = useAuth();
+  const [finish, setFinish] = useState(false);
 
   const handleEditContribution = () => {
     history.goBack();
@@ -64,7 +62,8 @@ const FinishDonation = () => {
   const handleFinishContribution = () => {
 
     if (isAuthenticated()) {
-      console.log("Est está autenticado");
+      setFinish(true);
+      console.log("getAuth ", getAuth());
     } else {
       history.push('/login');
     }
@@ -150,17 +149,12 @@ const FinishDonation = () => {
               </GridCol>
             </GridRow>
 
-            <GridButtonFinish>
-              <GridRowButtonFinish>
-                <GridColButtonFinish>
-                  <ButtonFinish onClick={() => handleFinishContribution()}>
-                    <TextPFinish>
-                      FINALIZAR CONTRIBUIÇÃO
-                    </TextPFinish>
-                  </ButtonFinish>
-                </GridColButtonFinish>
-              </GridRowButtonFinish>
-            </GridButtonFinish>
+            {!finish ? (
+              <ButtonFinishContribution handleFinishContribution={handleFinishContribution} />
+            ) :
+              <Payment />
+            }
+
 
           </GridContainer>
         </Body>
