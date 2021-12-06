@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { useCart } from '../../hooks/useCart';
 import { useAuth } from '../../hooks/useAuth';
-import { moneyFormat } from '../../utils/functions'
+import { moneyFormat } from '../../utils/functions';
 
 import ButtonFinishContribution from '../../components/ButtonFinishContribution'
 import Payment from '../../components/Payment'
@@ -63,13 +63,16 @@ const FinishDonation = () => {
 
     if (isAuthenticated()) {
       setFinish(true);
-      console.log("getAuth ", getAuth());
     } else {
       history.push('/login');
     }
-
   }
 
+  const handlePayment = () => {
+    console.log("getAuth ", getAuth());
+    history.push('/comprovante');
+
+  }
 
   return (
     <Container>
@@ -152,7 +155,7 @@ const FinishDonation = () => {
             {!finish ? (
               <ButtonFinishContribution handleFinishContribution={handleFinishContribution} />
             ) :
-              <Payment />
+              <Payment handlePayment={handlePayment} />
             }
 
 

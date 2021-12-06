@@ -6,6 +6,7 @@ import Donation from "../pages/Donation";
 import FinishDonation from "../pages/FinishDonation";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import ProofPayment from "../pages/ProofPayment";
 
 const Routes = () => {
   return (
@@ -16,6 +17,7 @@ const Routes = () => {
         <Route path="/finish" component={FinishDonation} />
         <Route path="/login" component={Login} />
         <Route path="/cadastro" component={Register} />
+        <Route path="/comprovante" component={ProofPayment} />
       </Switch>
     </BrowserRouter>
   )

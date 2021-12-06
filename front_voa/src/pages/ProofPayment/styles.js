@@ -105,7 +105,7 @@ export const ButtonGoBack = styled.a`
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-    width: 85%;
+    width: 100%;
     background: none rgb(255, 255, 255) !important;
     box-shadow: none !important;
     border: 2px solid rgb(204, 53, 119) !important;
