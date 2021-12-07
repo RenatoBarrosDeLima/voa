@@ -10,6 +10,7 @@ import homeRoutes from './src/routes/homeRoutes';
 import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
 import campaignRoutes from './src/routes/campaignRoutes';
+import donationRoutes from './src/routes/donationRoutes';
 
 class App {
   constructor() {
@@ -46,6 +47,7 @@ class App {
     this.app.use('/users', userRoutes);
     this.app.use('/tokens', tokenRoutes);
     this.app.use('/campaigns', campaignRoutes);
+    this.app.use('/donations', donationRoutes);
   }
 }
 

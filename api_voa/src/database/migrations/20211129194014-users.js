@@ -7,7 +7,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      nome: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -25,9 +25,13 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: '',
       },
-      telefone: {
+      telephone: {
         type: Sequelize.STRING,
         defaultValue: '',
+      },
+      admin: {
+        type: Sequelize.STRING,
+        defaultValue: 0,
       },
       password_hash: {
         type: Sequelize.STRING,

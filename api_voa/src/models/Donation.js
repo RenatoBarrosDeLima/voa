@@ -7,10 +7,6 @@ export default class Donation extends Model {
         type: Sequelize.FLOAT,
         defaultValue: '',
       },
-      deadline: {
-        type: Sequelize.DATE,
-        defaultValue: '',
-      },
     }, {
       sequelize,
       tableName: 'donations',
@@ -20,5 +16,6 @@ export default class Donation extends Model {
 
   static associate(models) {
     this.belongsTo(models.Campaign, { foreignKey: 'campaign_id' });
+    this.belongsTo(models.User, { foreignKey: 'user_id' });
   }
 }

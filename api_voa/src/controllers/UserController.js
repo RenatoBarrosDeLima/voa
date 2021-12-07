@@ -3,7 +3,7 @@ import User from '../models/User';
 class UserController {
   async index(req, res) {
     try {
-      const users = await User.findAll({ attributes: ['id', 'nome', 'email', 'cpf'] });
+      const users = await User.findAll({ attributes: ['id', 'name', 'email', 'cpf'] });
       return res.json(users);
     } catch (err) {
       return res.json(null);
@@ -15,10 +15,10 @@ class UserController {
       const user = await User.findByPk(req.params.id);
 
       const {
-        id, nome, email, cpf,
+        id, name, email, cpf,
       } = user;
       return res.json({
-        id, nome, email, cpf,
+        id, name, email, cpf,
       });
     } catch (err) {
       return res.json(null);

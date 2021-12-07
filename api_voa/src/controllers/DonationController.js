@@ -1,29 +1,10 @@
-import Campaign from '../models/Campaign';
+import Donation from '../models/Donation';
 
-class CampaignController {
-  async index(req, res) {
-    try {
-      const campaigns = await Campaign.findAll();
-      return res.json(campaigns);
-    } catch (err) {
-      return res.json(null);
-    }
-  }
-
-  async show(req, res) {
-    try {
-      const { id } = req.params;
-      const campaign = await Campaign.findByPk(id);
-      return res.json(campaign);
-    } catch (err) {
-      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
-    }
-  }
-
+class DonationController {
   async store(req, res) {
     try {
-      const campaign = await Campaign.create(req.body);
-      return res.json(campaign);
+      const donation = await Donation.create(req.body);
+      return res.json(donation);
     } catch (err) {
       return res.status(400).json({ errors: err.errors.map((e) => e.message) });
     }
@@ -31,7 +12,7 @@ class CampaignController {
 
   async update(req, res) {
     try {
-      const campaign = await Campaign.findByPk(req.userId);
+      const campaign = await Donation.findByPk(req.userId);
 
       if (!campaign) {
         return res.status(400).json({
@@ -58,7 +39,7 @@ class CampaignController {
         });
       }
 
-      const campaign = await Campaign.findByPk(id);
+      const campaign = await Donation.findByPk(id);
 
       if (!campaign) {
         return res.status(400).json({
@@ -77,4 +58,4 @@ class CampaignController {
   }
 }
 
-export default new CampaignController();
+export default new DonationController();
