@@ -1,10 +1,10 @@
-import User from '../models/User';
+import Campaign from '../models/Campaign';
 
-class UserController {
+class CampaignController {
   async index(req, res) {
     try {
-      const users = await User.findAll({ attributes: ['id', 'nome', 'email', 'cpf'] });
-      return res.json(users);
+      const campaigns = await Campaign.findAll();
+      return res.json(campaigns);
     } catch (err) {
       return res.json(null);
     }
@@ -12,23 +12,18 @@ class UserController {
 
   async show(req, res) {
     try {
-      const user = await User.findByPk(req.params.id);
-
-      const {
-        id, nome, email, cpf,
-      } = user;
-      return res.json({
-        id, nome, email, cpf,
-      });
+      const { id } = req.params;
+      const campaign = await Campaign.findByPk(id);
+      return res.json(campaign);
     } catch (err) {
-      return res.json(null);
+      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
     }
   }
 
   async store(req, res) {
     try {
-      const newUser = await User.create(req.body);
-      return res.json(newUser);
+      const newCampaign = await Campaign.create(req.body);
+      return res.json(newCampaign);
     } catch (err) {
       return res.status(400).json({ errors: err.errors.map((e) => e.message) });
     }
@@ -36,16 +31,16 @@ class UserController {
 
   async update(req, res) {
     try {
-      const user = await User.findByPk(req.userId);
+      const campaign = await Campaign.findByPk(req.userId);
 
-      if (!user) {
+      if (!campaign) {
         return res.status(400).json({
-          errors: ['Usuário não existe'],
+          errors: ['Campanha não existe'],
         });
       }
 
-      const newDate = await user.update(req.body);
-      return res.json(newDate);
+      const newData = await campaign.update(req.body);
+      return res.json(newData);
     } catch (err) {
       return res.status(400).json({
         errors: err.errors.map((e) => e.message),
@@ -63,17 +58,17 @@ class UserController {
         });
       }
 
-      const user = await User.findByPk(id);
+      const campaign = await Campaign.findByPk(id);
 
-      if (!user) {
+      if (!campaign) {
         return res.status(400).json({
-          errors: ['Usuáio não existe'],
+          errors: ['Campanha não existe'],
         });
       }
 
-      await user.destroy();
+      await campaign.destroy();
 
-      return res.json(user);
+      return res.json(campaign);
     } catch (err) {
       return res.status(400).json({
         errors: err.errors.map((e) => e.message),
@@ -82,4 +77,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+export default new CampaignController();

@@ -9,6 +9,7 @@ import cors from 'cors';
 import homeRoutes from './src/routes/homeRoutes';
 import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
+import campaignRoutes from './src/routes/campaignRoutes';
 
 class App {
   constructor() {
@@ -26,6 +27,7 @@ class App {
     const whiteList = [
       'http://localhost:3000',
       'http://localhost:3001',
+      'http://localhost:3002',
     ];
 
     const corsOptions = {
@@ -43,6 +45,7 @@ class App {
     this.app.use('/', homeRoutes);
     this.app.use('/users', userRoutes);
     this.app.use('/tokens', tokenRoutes);
+    this.app.use('/campaigns', campaignRoutes);
   }
 }
 
