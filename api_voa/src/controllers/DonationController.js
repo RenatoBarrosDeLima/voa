@@ -16,6 +16,22 @@ class DonationController {
     }
   }
 
+  async show(req, res) {
+    try {
+      const donation = await Donation.findByPk(req.params.id, {
+        order: [['id', 'DESC']],
+        attributes: ['id', 'value', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['id', 'name', 'email', 'cpf', 'telephone'],
+        },
+      });
+      return res.json(donation);
+    } catch (err) {
+      return res.json(null);
+    }
+  }
+
   async store(req, res) {
     try {
       const donation = await Donation.create(req.body);
