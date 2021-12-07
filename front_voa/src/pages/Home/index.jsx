@@ -48,8 +48,8 @@ const Home = () => {
         <Session title={"Vaquinhas em Destaque"} />
         <Campaigns campaigns={campaigns} />
         <ButtonAllCampaigns />
-        <Session title={"Vaquinhas que Voaram"} />
-        <Campaigns />
+        {/* <Session title={"Vaquinhas que Voaram"} />
+        <Campaigns /> */}
         <Footer />
       </Content>
     </Container>

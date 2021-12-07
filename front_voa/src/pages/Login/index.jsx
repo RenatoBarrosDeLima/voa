@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { useAuth } from '../../hooks/useAuth';
+// API
 import api from '../../services/api';
+
+// HOOKS
+import { useAuth } from '../../hooks/useAuth';
+
+// COMPONENTES
 import Header from '../../layout/Header';
 import Loading from '../../components/LoadingScreen';
 
+// COMPONENTES CUSTOMIZADOS
 import {
   Container,
   Content,

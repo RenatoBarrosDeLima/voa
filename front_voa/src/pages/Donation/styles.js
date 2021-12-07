@@ -285,7 +285,7 @@ export const Progress = styled.div`
     left: 0px;
     background-color: rgb(204, 53, 119);
     border-radius: 6px;
-    width: 34.2811%;
+    width: ${props => `${props.$progress}%`};
     height: 100%;
 `;
 
@@ -450,31 +450,6 @@ export const ContainerButtons = styled.div`
     }
 
 
-`;
-
-export const ButtonAdd = styled.a`
-    text-decoration: none;
-    margin: 0px 0px 20px;
-    border: 2px solid rgb(204, 53, 119);
-    background: rgb(255, 255, 255);
-    padding: 0px;
-    font-size: 16px;
-    color: rgb(125, 42, 138);
-    font-weight: 600;
-    letter-spacing: -0.32px;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    height: 55px;
-    -webkit-box-align: center;
-    align-items: center;
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    border-radius: 50px;
-    width: 100%;
-    max-width: 300px;
-    outline: none;
-    cursor: pointer;
-    box-shadow: rgb(125 42 138 / 30%) 0px 12px 30px 0px;
 `;
 
 export const ButtonFinish = styled.a`

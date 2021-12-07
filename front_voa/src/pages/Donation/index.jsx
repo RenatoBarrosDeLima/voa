@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
+// API
+import api from '../../services/api';
+
+
 // FUNCTIONS UTILS
-import { moneyFormat } from '../../utils/functions'
+import {
+  daysRemaining,
+  moneyFormat,
+  calculatePercentageNumber,
+  calculatePercentageString
+} from '../../utils/functions';
 
 // COMPONENTES
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import ButtonContribution from '../../components/ButtonContribution';
+import Loading from '../../components/LoadingScreen';
 
 // HOOKS
 import { useCart } from '../../hooks/useCart';
@@ -63,20 +73,30 @@ import {
   ContributionTotalResumeTitle,
   ContributionTotalResumeValue,
   ContainerButtons,
-  ButtonAdd,
   ButtonFinish
 } from './styles'
 
 const Donation = () => {
 
-  const { onAddToCart } = useCart();
+  const history = useHistory();
   const query = useQuery();
-
-  // console.log("ID da campanha ", query.get('id'));
-  // console.log("Auth ", useAuth());
-
-  const history = useHistory()
+  const { onAddToCart } = useCart();
+  const [loading, setLoading] = useState(false);
   const [valueSelected, setValueSelected] = useState("");
+  const [campaign, setCampaign] = useState([]);
+
+  useEffect(() => {
+    setLoading(false);
+    api.get(`/campaigns/${query.get('id')}`)
+      .then(response => {
+        setCampaign(response?.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setLoading(false);
+        return window.alert('Erro ao listar as campanhas.');
+      })
+  }, [])
 
   const changeValue = (item) => {
     setValueSelected(item);
@@ -92,136 +112,127 @@ const Donation = () => {
 
 
   return (
-    <Container>
-      <Header />
-      <Content>
-        <Body>
-          <GridContainer>
-            <GridRow>
-              <ColLeft>
-                <TitleBox>
-                  <TextH1>
-                    Vaquinha para família que escapou da morte em enxurrada e perdeu tudo
-                  </TextH1>
-                </TitleBox>
-                <ImageContent>
-                  <Wrapper>
-                    <SwiperContainer>
-                      <SwiperWrapper>
-                        <SwiperSlide>
-                          <MediaContainer>
-                            <Image src={'https://s3.sa-east-1.amazonaws.com/uploads.voaa.me/campaign/9445/1b5c1dde-7c13-41df-9b6a-10d6f890e3df-C%C3%B3pia%20de%20CAPAS%20-%202021-11-25T152332.566.jpg'} />
-                          </MediaContainer>
-                        </SwiperSlide>
-                      </SwiperWrapper>
-                    </SwiperContainer>
-                  </Wrapper>
-                </ImageContent>
-                <ContainerText>
-                  <ContentText>
-                    <TextP>
-                      Romulo mora com sua esposa, Julia, em Anápolis (GO) em uma casa financiada, onde pagam 700 reais de prestação. Na semana passada, devido às fortes chuvas na cidade, ele percebeu que tinha água acumulando no terreno ao fundo de sua casa, chegando à altura de 1 metro e meio!
-                    </TextP>
-                    <TextP>
-                      Romulo avisou o proprietário do terreno várias vezes, mas ele sempre dizia que estava tudo certo. Foi quando, no dia 18/11, por volta de 12:30,
-                    </TextP>
-                  </ContentText>
-                </ContainerText>
-              </ColLeft>
+    <>
+      <Loading loading={loading} />
+      <Container>
+        <Header />
+        <Content>
+          <Body>
+            <GridContainer>
+              <GridRow>
+                <ColLeft>
+                  <TitleBox>
+                    <TextH1> {campaign?.title} </TextH1>
+                  </TitleBox>
+                  <ImageContent>
+                    <Wrapper>
+                      <SwiperContainer>
+                        <SwiperWrapper>
+                          <SwiperSlide>
+                            <MediaContainer>
+                              <Image src={campaign?.image} />
+                            </MediaContainer>
+                          </SwiperSlide>
+                        </SwiperWrapper>
+                      </SwiperContainer>
+                    </Wrapper>
+                  </ImageContent>
+                  <ContainerText>
+                    <ContentText>
+                      <TextP> {campaign?.description} </TextP>
+                    </ContentText>
+                  </ContainerText>
+                </ColLeft>
 
-              <ColRight>
-                <BlurContainer>
-                  <ContentRight>
+                <ColRight>
+                  <BlurContainer>
+                    <ContentRight>
 
-                    <GridContainerDonation>
-                      <TextCategory>
-                        Moradia
-                      </TextCategory>
+                      <GridContainerDonation>
+                        <TextCategory> {campaign?.category} </TextCategory>
 
-                      <ContainerCardProgressBar>
-                        <ValueCollected>
-                          <ValueCollectedText> R$ 41.137,26 </ValueCollectedText>
-                          <ValueCollectedPercent> 34% </ValueCollectedPercent>
+                        <ContainerCardProgressBar>
+                          <ValueCollected>
+                            <ValueCollectedText>{moneyFormat(campaign?.total_collected)} </ValueCollectedText>
+                            <ValueCollectedPercent>{calculatePercentageString(campaign?.goal, campaign?.total_collected)} </ValueCollectedPercent>
 
-                        </ValueCollected>
-                      </ContainerCardProgressBar>
+                          </ValueCollected>
+                        </ContainerCardProgressBar>
 
-                      <ProgressBar>
-                        <Progress />
-                      </ProgressBar>
+                        <ProgressBar>
+                          <Progress $progress={calculatePercentageNumber(campaign?.goal, campaign?.total_collected)} />
+                        </ProgressBar>
 
-                      <ContentDetail>
-                        <GoalDetail>
-                          <GoalValue> R$ 120.000,00</GoalValue>
-                          <GoalText> META</GoalText>
-                        </GoalDetail>
+                        <ContentDetail>
+                          <GoalDetail>
+                            <GoalValue> {moneyFormat(campaign?.goal)} </GoalValue>
+                            <GoalText> META</GoalText>
+                          </GoalDetail>
 
-                        <GoalDetail>
-                          <GoalValue>22</GoalValue>
-                          <GoalText> DIAS RESTANTES</GoalText>
-                        </GoalDetail>
+                          <GoalDetail>
+                            <GoalValue>{daysRemaining(campaign?.deadline)}</GoalValue>
+                          </GoalDetail>
 
-                      </ContentDetail>
+                        </ContentDetail>
 
-                      <TextValue> Quero contribuir com </TextValue>
+                        <TextValue> Quero contribuir com </TextValue>
 
-                      <ButtonContribution changeValue={changeValue} valueSelected={valueSelected} />
+                        <ButtonContribution changeValue={changeValue} valueSelected={valueSelected} />
 
-                      <Anonymous>
-                        <CheckBoxWrapper>
-                          <input type="checkbox" />
-                        </CheckBoxWrapper>
+                        <Anonymous>
+                          <CheckBoxWrapper>
+                            <input type="checkbox" />
+                          </CheckBoxWrapper>
 
-                        <TextAnonymous>
-                          Fazer contribuição anônima
-                          <br></br>
-                          <TextHide>(ocultar o seu nome para o público)</TextHide>
-                        </TextAnonymous>
+                          <TextAnonymous>
+                            Fazer contribuição anônima
+                            <br></br>
+                            <TextHide>(ocultar o seu nome para o público)</TextHide>
+                          </TextAnonymous>
 
-                      </Anonymous>
+                        </Anonymous>
 
-                    </GridContainerDonation>
+                      </GridContainerDonation>
 
-                    <ContainerDonationResume>
-                      <ContentDonationResume>
-                        <GridInlineResume>
-                          <TextTitleResume>
-                            Resumo da doação:
-                          </TextTitleResume>
-                        </GridInlineResume>
+                      <ContainerDonationResume>
+                        <ContentDonationResume>
+                          <GridInlineResume>
+                            <TextTitleResume>
+                              Resumo da doação:
+                            </TextTitleResume>
+                          </GridInlineResume>
 
-                        <GridInlineResume>
-                          <TextContribution>
-                            Sua contribuição
-                          </TextContribution>
-                          <TextContributionValue>
-                            {moneyFormat(valueSelected)}
-                          </TextContributionValue>
-                        </GridInlineResume>
-                      </ContentDonationResume>
+                          <GridInlineResume>
+                            <TextContribution>
+                              Sua contribuição
+                            </TextContribution>
+                            <TextContributionValue>
+                              {moneyFormat(valueSelected)}
+                            </TextContributionValue>
+                          </GridInlineResume>
+                        </ContentDonationResume>
 
-                      <ContributionTotalResume>
-                        <ContributionTotalResumeTitle> VALOR TOTAL </ContributionTotalResumeTitle>
-                        <ContributionTotalResumeValue>  {moneyFormat(valueSelected)} </ContributionTotalResumeValue>
-                      </ContributionTotalResume>
-                    </ContainerDonationResume>
+                        <ContributionTotalResume>
+                          <ContributionTotalResumeTitle> VALOR TOTAL </ContributionTotalResumeTitle>
+                          <ContributionTotalResumeValue>  {moneyFormat(valueSelected)} </ContributionTotalResumeValue>
+                        </ContributionTotalResume>
+                      </ContainerDonationResume>
 
-                    <ContainerButtons>
-                      {/* <ButtonAdd href="#"> ADICIONAR AO CARRINHO </ButtonAdd> */}
-                      <ButtonFinish onClick={() => finishContribution()}> FINALIZAR CONTRIBUIÇÃO </ButtonFinish>
+                      <ContainerButtons>
+                        <ButtonFinish onClick={() => finishContribution()}> FINALIZAR CONTRIBUIÇÃO </ButtonFinish>
+                      </ContainerButtons>
 
-                    </ContainerButtons>
+                    </ContentRight>
+                  </BlurContainer>
+                </ColRight>
+              </GridRow>
+            </GridContainer>
+          </Body>
 
-                  </ContentRight>
-                </BlurContainer>
-              </ColRight>
-            </GridRow>
-          </GridContainer>
-        </Body>
-
-        <Footer />
-      </Content>
-    </Container>
+          <Footer />
+        </Content>
+      </Container>
+    </>
   )
 }
 
