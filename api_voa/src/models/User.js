@@ -45,6 +45,10 @@ export default class User extends Model {
         type: Sequelize.STRING,
         defaultValue: '',
       },
+      admin: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
       password_hash: {
         type: Sequelize.STRING,
         defaultValue: '',
@@ -74,5 +78,9 @@ export default class User extends Model {
 
   passwordIsValid(password) {
     return bcryptjs.compare(password, this.password_hash);
+  }
+
+  static associate(models) {
+    this.hasMany(models.Donation, { foreignKey: 'id' });
   }
 }

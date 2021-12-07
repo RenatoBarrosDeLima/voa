@@ -3,7 +3,7 @@ import User from '../models/User';
 class UserController {
   async index(req, res) {
     try {
-      const users = await User.findAll({ attributes: ['id', 'name', 'email', 'cpf'] });
+      const users = await User.findAll({ attributes: ['id', 'name', 'email', 'cpf', 'admin'] });
       return res.json(users);
     } catch (err) {
       return res.json(null);

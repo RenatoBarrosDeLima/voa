@@ -1,12 +1,27 @@
 import Donation from '../models/Donation';
+import User from '../models/User';
 
 class DonationController {
+  async index(req, res) {
+    try {
+      const donations = await Donation.findAll({
+        order: [['id', 'DESC']],
+        include: {
+          model: User,
+        },
+      });
+      return res.json(donations);
+    } catch (err) {
+      return res.json(null);
+    }
+  }
+
   async store(req, res) {
     try {
       const donation = await Donation.create(req.body);
       return res.json(donation);
     } catch (err) {
-      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).json({ message: err.name });
     }
   }
 

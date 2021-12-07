@@ -29,7 +29,7 @@ export default class Campaign extends Model {
     return this;
   }
 
-  // static associate(models) {
-  //   this.hasMany(models.Foto, { foreignKey: 'aluno_id' });
-  // }
+  static associate(models) {
+    this.hasMany(models.Donation, { foreignKey: 'campaign_id' });
+  }
 }

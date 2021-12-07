@@ -30,7 +30,7 @@ module.exports = {
         defaultValue: '',
       },
       admin: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         defaultValue: 0,
       },
       password_hash: {
