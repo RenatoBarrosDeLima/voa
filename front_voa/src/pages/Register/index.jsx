@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // API
 import api from '../../services/api';
@@ -8,6 +9,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 // COMPONENTES
 import Header from '../../layout/Header';
+import Loading from '../../components/LoadingScreen';
 
 // COMPONENTES CUSTOMIZADOS
 import {
@@ -31,7 +33,8 @@ import {
 } from './styles';
 
 const Register = () => {
-
+  const history = useHistory()
+  const { onAddToAuth } = useAuth();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
@@ -39,26 +42,45 @@ const Register = () => {
   const [admin, setAdmin] = useState(false);
   const [password, setPassword] = useState('');
   const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   const handleRegister = () => {
-    console.log('name ', name);
-    console.log('email ', email);
-    console.log('cpf ', cpf);
-    console.log('telephone ', telephone);
-    console.log('admin ', admin);
-    console.log('password ', password);
-    console.log('visible ', visible);
 
     if (name == '' || email == '' || cpf == '' || password == '') {
       return window.alert('Informe Nome, Email, CPF e Senha para continuar!');
     }
+
+    setLoading(true);
+
+    const body = {
+      name: name,
+      email: email,
+      cpf: cpf,
+      telephone: telephone,
+      password: password,
+      admin: admin ? 1 : 0
+    }
+
+    api.post("/users/", {
+      ...body
+    })
+      .then(response => {
+        onAddToAuth(response.data)
+        history.push('/');
+        setLoading(false);
+      })
+      .catch(err => {
+        setLoading(false);
+        return window.alert('Ocorreu um erro, tente novamente');
+      })
 
 
   }
 
   return (
     <Container>
+      <Loading loading={loading} />
       <Header />
       <Content>
         <TitleContainer>

@@ -59,7 +59,7 @@ const Header = () => {
           </Center>
           <Rigth>
             {isAuthenticated() ? (
-              <Button> {getAuth()?.nome} </Button>
+              <Button> {getAuth()?.name} </Button>
             ) :
               <Link to="/login">
                 <Button>Login</Button>

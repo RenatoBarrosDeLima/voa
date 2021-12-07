@@ -18,6 +18,8 @@ import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import ButtonContribution from '../../components/ButtonContribution';
 import Loading from '../../components/LoadingScreen';
+import ContainerResume from './components/ContainerResume';
+import ColLeft from './components/ColLeft';
 
 // HOOKS
 import { useCart } from '../../hooks/useCart';
@@ -30,19 +32,6 @@ import {
   Body,
   GridContainer,
   GridRow,
-  ColLeft,
-  TitleBox,
-  TextH1,
-  ImageContent,
-  Wrapper,
-  SwiperContainer,
-  SwiperWrapper,
-  SwiperSlide,
-  MediaContainer,
-  Image,
-  ContainerText,
-  ContentText,
-  TextP,
   ColRight,
   BlurContainer,
   ContentRight,
@@ -63,18 +52,9 @@ import {
   CheckBoxWrapper,
   TextAnonymous,
   TextHide,
-  ContainerDonationResume,
-  ContentDonationResume,
-  GridInlineResume,
-  TextTitleResume,
-  TextContribution,
-  TextContributionValue,
-  ContributionTotalResume,
-  ContributionTotalResumeTitle,
-  ContributionTotalResumeValue,
   ContainerButtons,
   ButtonFinish
-} from './styles'
+} from './styles';
 
 const Donation = () => {
 
@@ -110,7 +90,6 @@ const Donation = () => {
     history.push('/finish')
   }
 
-
   return (
     <>
       <Loading loading={loading} />
@@ -120,29 +99,8 @@ const Donation = () => {
           <Body>
             <GridContainer>
               <GridRow>
-                <ColLeft>
-                  <TitleBox>
-                    <TextH1> {campaign?.title} </TextH1>
-                  </TitleBox>
-                  <ImageContent>
-                    <Wrapper>
-                      <SwiperContainer>
-                        <SwiperWrapper>
-                          <SwiperSlide>
-                            <MediaContainer>
-                              <Image src={campaign?.image} />
-                            </MediaContainer>
-                          </SwiperSlide>
-                        </SwiperWrapper>
-                      </SwiperContainer>
-                    </Wrapper>
-                  </ImageContent>
-                  <ContainerText>
-                    <ContentText>
-                      <TextP> {campaign?.description} </TextP>
-                    </ContentText>
-                  </ContainerText>
-                </ColLeft>
+
+                <ColLeft campaign={campaign}/>
 
                 <ColRight>
                   <BlurContainer>
@@ -194,29 +152,7 @@ const Donation = () => {
 
                       </GridContainerDonation>
 
-                      <ContainerDonationResume>
-                        <ContentDonationResume>
-                          <GridInlineResume>
-                            <TextTitleResume>
-                              Resumo da doação:
-                            </TextTitleResume>
-                          </GridInlineResume>
-
-                          <GridInlineResume>
-                            <TextContribution>
-                              Sua contribuição
-                            </TextContribution>
-                            <TextContributionValue>
-                              {moneyFormat(valueSelected)}
-                            </TextContributionValue>
-                          </GridInlineResume>
-                        </ContentDonationResume>
-
-                        <ContributionTotalResume>
-                          <ContributionTotalResumeTitle> VALOR TOTAL </ContributionTotalResumeTitle>
-                          <ContributionTotalResumeValue>  {moneyFormat(valueSelected)} </ContributionTotalResumeValue>
-                        </ContributionTotalResume>
-                      </ContainerDonationResume>
+                      <ContainerResume valueSelected={valueSelected} />
 
                       <ContainerButtons>
                         <ButtonFinish onClick={() => finishContribution()}> FINALIZAR CONTRIBUIÇÃO </ButtonFinish>

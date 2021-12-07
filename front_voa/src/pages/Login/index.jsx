@@ -46,11 +46,12 @@ const Login = () => {
   }
 
   const handleSign = () => {
-    setLoading(true);
 
     if (email == '' || password == '') {
       return window.alert('Informe Email e Senha para continuar!');
     }
+
+    setLoading(true);
 
     api.post("/tokens/login", {
       email,
