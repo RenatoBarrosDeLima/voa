@@ -147,6 +147,7 @@ export const TextSpan = styled.span`
     font-weight: 500;
     letter-spacing: 0.24px;
     margin: 0px;
+    text-transform: uppercase;
 `;
 
 export const TextH3 = styled.h3`
@@ -213,7 +214,7 @@ export const Progress = styled.div`
     left: 0px;
     background-color: rgb(204, 53, 119);
     border-radius: 6px;
-    width: 25%;
+    width: ${props => `${props.$progress}%`};
     height: 100%;
 `;
 

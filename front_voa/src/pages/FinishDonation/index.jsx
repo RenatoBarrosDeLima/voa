@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useCart } from '../../hooks/useCart';
-import { useAuth } from '../../hooks/useAuth';
+// FUNCTIONS UTILS
 import { moneyFormat } from '../../utils/functions';
 
+// HOOKS
+import { useCart } from '../../hooks/useCart';
+import { useAuth } from '../../hooks/useAuth';
+
+// COMPONENTES
 import ButtonFinishContribution from '../../components/ButtonFinishContribution'
 import Payment from '../../components/Payment'
 
+// COMPONENTES CUSTOMIZADOS
 import {
   Container,
   Content,

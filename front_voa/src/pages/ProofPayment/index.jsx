@@ -1,10 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { useCart } from '../../hooks/useCart';
+// FUNCTIONS UTILS
 import { moneyFormat } from '../../utils/functions';
 
+// HOOKS
+import { useCart } from '../../hooks/useCart';
+
+// COMPONENTES
 import Header from '../../layout/Header';
+
+// COMPONENTES CUSTOMIZADOS
 import {
   Container,
   Content,

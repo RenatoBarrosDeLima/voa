@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-// Funções
+// FUNCTIONS UTILS
 import { moneyFormat } from '../../utils/functions'
 
-// Componentes
+// COMPONENTES
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import ButtonContribution from '../../components/ButtonContribution';
 
+// HOOKS
 import { useCart } from '../../hooks/useCart';
 import { useQuery } from '../../hooks/useQueryURL';
-// import { useAuth } from '../../hooks/useAuth';
 
-// Componentes de customizados
+// COMPONENTES CUSTOMIZADOS
 import {
   Container,
   Content,
