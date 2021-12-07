@@ -23,6 +23,10 @@ export default class Campaign extends Model {
         type: Sequelize.DATE,
         defaultValue: '',
       },
+      category: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+      },
     }, {
       sequelize,
     });

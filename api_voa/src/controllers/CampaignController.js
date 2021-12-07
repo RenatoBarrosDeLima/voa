@@ -1,4 +1,5 @@
 // import sequelize from 'sequelize';
+import sequelize from 'sequelize';
 import Campaign from '../models/Campaign';
 import Donation from '../models/Donation';
 import User from '../models/User';
@@ -8,14 +9,20 @@ class CampaignController {
     try {
       const campaigns = await Campaign.findAll({
         order: [['id', 'DESC'], [Donation, 'id', 'DESC']],
-        attributes: ['id', 'title', 'description', 'image', 'goal', 'deadline', 'created_at'],
+        attributes: [
+          'id',
+          'title',
+          'description',
+          'image',
+          'goal',
+          'deadline',
+          'category',
+          'created_at',
+          [sequelize.fn('sum', sequelize.col('value')), 'total_collected'],
+        ],
         include: {
           model: Donation,
-          attributes: ['id', 'value', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['id', 'name', 'email', 'cpf', 'telephone'],
-          },
+          attributes: [],
         },
       });
       return res.json(campaigns);
@@ -50,7 +57,7 @@ class CampaignController {
       const { id } = req.params;
       const campaign = await Campaign.findByPk(id, {
         order: [['id', 'DESC'], [Donation, 'id', 'DESC']],
-        attributes: ['id', 'title', 'description', 'image', 'goal', 'deadline', 'created_at'],
+        attributes: ['id', 'title', 'description', 'image', 'goal', 'deadline', 'category', 'created_at'],
         include: {
           model: Donation,
           attributes: ['id', 'value', 'created_at'],
