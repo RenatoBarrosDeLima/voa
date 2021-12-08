@@ -16,7 +16,7 @@ class DonationController {
     }
   }
 
-  async show(req, res) {
+  async showDonation(req, res) {
     try {
       const donation = await Donation.findByPk(req.params.id, {
         order: [['id', 'DESC']],
@@ -29,6 +29,25 @@ class DonationController {
       return res.json(donation);
     } catch (err) {
       return res.json(null);
+    }
+  }
+
+  async donationSearchUser(req, res) {
+    try {
+      const { user_id } = req.body;
+
+      const donation = await Donation.findAll({
+        where: { user_id },
+        order: [['id', 'DESC']],
+        attributes: ['id', 'value', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['id', 'name', 'email', 'cpf', 'telephone'],
+        },
+      });
+      return res.json(donation);
+    } catch (err) {
+      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
     }
   }
 
@@ -60,34 +79,6 @@ class DonationController {
       }
       const donationUpdate = await donation.update(req.body);
       return res.json(donationUpdate);
-    } catch (err) {
-      return res.status(400).json({
-        errors: err.errors.map((e) => e.message),
-      });
-    }
-  }
-
-  async delete(req, res) {
-    try {
-      const { id } = req.params;
-
-      if (!id) {
-        return res.status(400).json({
-          errors: ['ID não enviado.'],
-        });
-      }
-
-      const campaign = await Donation.findByPk(id);
-
-      if (!campaign) {
-        return res.status(400).json({
-          errors: ['Campanha não existe'],
-        });
-      }
-
-      await campaign.destroy();
-
-      return res.json(campaign);
     } catch (err) {
       return res.status(400).json({
         errors: err.errors.map((e) => e.message),

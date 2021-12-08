@@ -36,6 +36,15 @@ class CampaignController {
     }
   }
 
+  async store(req, res) {
+    try {
+      const campaign = await Campaign.create(req.body);
+      return res.json(campaign);
+    } catch (err) {
+      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+    }
+  }
+
   async showCampaign(req, res) {
     try {
       const { id } = req.params;
@@ -115,17 +124,23 @@ class CampaignController {
   async campaignSearchUserFilter(req, res) {
     try {
       const { Op } = sequelize;
-      const { campaign_id, user_id, reversal } = req.body;
+      const {
+        campaign_id,
+        user_id,
+        reversal,
+        start_date,
+        end_date,
+      } = req.body;
 
       const campaign = await Campaign.findAll({
         where: { user_id, id: campaign_id },
         order: [['id', 'DESC'], [Donation, 'id', 'DESC']],
-        attributes: ['id', 'title', 'description', 'image', 'goal', 'deadline', 'category', 'created_at'],
+        attributes: ['id', 'title'],
         include: {
           model: Donation,
           where: {
             created_at: {
-              [Op.between]: ['2021-07-01T14:06:48.000Z', '2021-10-30T22:33:54.000Z'],
+              [Op.between]: [start_date, end_date],
             },
             reversal,
           },
@@ -136,15 +151,6 @@ class CampaignController {
           },
         },
       });
-      return res.json(campaign);
-    } catch (err) {
-      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
-    }
-  }
-
-  async store(req, res) {
-    try {
-      const campaign = await Campaign.create(req.body);
       return res.json(campaign);
     } catch (err) {
       return res.status(400).json({ errors: err.errors.map((e) => e.message) });

@@ -4,8 +4,9 @@ import DonationController from '../controllers/DonationController';
 const router = new Router();
 
 router.get('/', DonationController.index);
-router.get('/:id', DonationController.show);
 router.post('/', DonationController.store);
 router.put('/', DonationController.update);
+router.get('/showDonation/:id', DonationController.showDonation);
+router.post('/donationSearchUser', DonationController.donationSearchUser);
 
 export default router;
