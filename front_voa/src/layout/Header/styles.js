@@ -98,6 +98,7 @@ export const Rigth = styled.div`
     font-weight: bold;
     margin-right: 43px;
     z-index: 100;
+    width: 10%;
 `;
 
 export const Button = styled.button`

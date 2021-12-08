@@ -4,8 +4,8 @@ export const useCart = () => {
   const [cart, setCart] = useState(null);
 
   const onAddToCart = useCallback(
-    (campaignId, value = true) => {
-      const newCart = { campaignId: campaignId, value: value };
+    (campaignId, value = true, anonymous = false) => {
+      const newCart = { campaignId: campaignId, value: value, anonymous: anonymous };
       setCart(newCart);
 
       localStorage.setItem('cart', JSON.stringify(newCart));

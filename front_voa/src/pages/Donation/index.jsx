@@ -23,6 +23,7 @@ import ColLeft from './components/ColLeft';
 
 // HOOKS
 import { useCart } from '../../hooks/useCart';
+import { useCampaign } from '../../hooks/useCampaign';
 import { useQuery } from '../../hooks/useQueryURL';
 
 // COMPONENTES CUSTOMIZADOS
@@ -61,12 +62,14 @@ const Donation = () => {
   const history = useHistory();
   const query = useQuery();
   const { onAddToCart } = useCart();
+  const { onAddToCampaign } = useCampaign();
   const [loading, setLoading] = useState(false);
   const [valueSelected, setValueSelected] = useState("");
   const [campaign, setCampaign] = useState([]);
+  const [anonymous, setAnonymous] = useState(false);
 
   useEffect(() => {
-    setLoading(false);
+    setLoading(true);
     api.get(`/campaigns/${query.get('id')}`)
       .then(response => {
         setCampaign(response?.data);
@@ -86,8 +89,9 @@ const Donation = () => {
     if (!valueSelected) {
       return window.alert('Escolha um valor para doação');
     }
-    onAddToCart(query.get('id'), valueSelected);
-    history.push('/finish')
+    onAddToCart(query.get('id'), valueSelected, anonymous);
+    onAddToCampaign(campaign);
+    history.push('/finish');
   }
 
   return (
@@ -139,7 +143,7 @@ const Donation = () => {
 
                         <Anonymous>
                           <CheckBoxWrapper>
-                            <input type="checkbox" />
+                            <input onChange={() => setAnonymous(!anonymous)} type="checkbox" />
                           </CheckBoxWrapper>
 
                           <TextAnonymous>

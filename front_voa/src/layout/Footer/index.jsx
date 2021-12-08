@@ -1,5 +1,6 @@
 import React from 'react';
 
+// COMPONENTES CUSTOMIZADOS
 import {
   Container,
   ContainerLinks,
@@ -20,8 +21,7 @@ import {
   ContatoLeft,
   TextH5,
   TextContatoP
-
-} from './styles'
+} from './styles';
 
 const Footer = () => {
   return (

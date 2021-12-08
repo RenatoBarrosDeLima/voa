@@ -1,7 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
+// HOOKS
 import { useAuth } from '../../hooks/useAuth';
+
+// COMPONENTES CUSTOMIZADOS
 import {
   Container,
   Content,
@@ -16,7 +19,13 @@ import {
 } from './styles'
 
 const Header = () => {
-  const { getAuth, isAuthenticated } = useAuth();
+  const history = useHistory();
+  const { getAuth, isAuthenticated, removeAuth } = useAuth();
+
+  const handleLogout = () => {
+    removeAuth();
+    history.push('/');
+  }
 
   return (
     <Container>
@@ -54,6 +63,14 @@ const Header = () => {
                   <LinkP href="#"> Envie sua história </LinkP>
                 </Li>
               </div>
+
+              {isAuthenticated() && (
+                <div>
+                  <Li>
+                    <LinkP onClick={() => handleLogout()}> Sair </LinkP>
+                  </Li>
+                </div>
+              )}
 
             </Ul>
           </Center>
