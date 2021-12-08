@@ -43,16 +43,23 @@ class DonationController {
 
   async update(req, res) {
     try {
-      const campaign = await Donation.findByPk(req.userId);
+      const { id } = req.body;
 
-      if (!campaign) {
+      if (!id) {
         return res.status(400).json({
-          errors: ['Campanha não existe'],
+          errors: ['Faltando ID'],
         });
       }
 
-      const newData = await campaign.update(req.body);
-      return res.json(newData);
+      const donation = await Donation.findByPk(id);
+
+      if (!donation) {
+        return res.status(400).json({
+          errors: ['Doação não existe'],
+        });
+      }
+      const donationUpdate = await donation.update(req.body);
+      return res.json(donationUpdate);
     } catch (err) {
       return res.status(400).json({
         errors: err.errors.map((e) => e.message),
