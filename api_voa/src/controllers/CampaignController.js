@@ -57,6 +57,33 @@ class CampaignController {
       const { id } = req.params;
       const campaign = await Campaign.findByPk(id, {
         order: [['id', 'DESC'], [Donation, 'id', 'DESC']],
+        attributes: [
+          'id',
+          'title',
+          'description',
+          'image',
+          'goal',
+          'deadline',
+          'category',
+          'created_at',
+          [sequelize.fn('sum', sequelize.col('value')), 'total_collected'],
+        ],
+        include: {
+          model: Donation,
+          attributes: [],
+        },
+      });
+      return res.json(campaign);
+    } catch (err) {
+      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+    }
+  }
+
+  async campaignSearch(req, res) {
+    try {
+      const { id } = req.params;
+      const campaign = await Campaign.findByPk(id, {
+        order: [['id', 'DESC'], [Donation, 'id', 'DESC']],
         attributes: ['id', 'title', 'description', 'image', 'goal', 'deadline', 'category', 'created_at'],
         include: {
           model: Donation,
