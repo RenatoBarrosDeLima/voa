@@ -25,13 +25,15 @@ class TokenController {
       });
     }
 
-    const { id, name, cpf } = user;
+    const {
+      id, name, cpf, admin,
+    } = user;
     const token = jwt.sign({ id, email }, process.env.TOKEN_SECRET, {
       expiresIn: process.env.TOKEN_EXPIRATION,
     });
 
     return res.json({
-      token, id, name, cpf,
+      token, id, name, cpf, admin,
     });
   }
 
@@ -59,14 +61,14 @@ class TokenController {
     }
 
     const {
-      id, name, cpf, telefone,
+      id, name, cpf, telefone, admin,
     } = user;
     const token = jwt.sign({ id, email }, process.env.TOKEN_SECRET, {
       expiresIn: process.env.TOKEN_EXPIRATION,
     });
 
     return res.status(201).json({
-      token, id, name, cpf, telefone,
+      token, id, name, cpf, telefone, admin,
     });
   }
 }

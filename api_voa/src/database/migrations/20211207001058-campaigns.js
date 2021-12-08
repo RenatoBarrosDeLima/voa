@@ -27,6 +27,20 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true,
       },
+      category: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: true,
@@ -35,7 +49,6 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true,
       },
-
     });
   },
 

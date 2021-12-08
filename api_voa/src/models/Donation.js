@@ -7,6 +7,14 @@ export default class Donation extends Model {
         type: Sequelize.FLOAT,
         defaultValue: '',
       },
+      reversal: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
+      status: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
     }, {
       sequelize,
       tableName: 'donations',

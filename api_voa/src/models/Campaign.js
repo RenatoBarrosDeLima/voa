@@ -27,6 +27,10 @@ export default class Campaign extends Model {
         type: Sequelize.STRING,
         defaultValue: '',
       },
+      user_id: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+      },
     }, {
       sequelize,
     });

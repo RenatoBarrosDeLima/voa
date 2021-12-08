@@ -4,7 +4,8 @@ import CampaignController from '../controllers/CampaignController';
 const router = new Router();
 
 router.get('/', CampaignController.index);
-router.get('/:id', CampaignController.show);
+router.get('/showCampaign/:id', CampaignController.showCampaign);
 router.post('/', CampaignController.store);
+router.get('/campaignSearch/:id', CampaignController.campaignSearch);
 
 export default router;
