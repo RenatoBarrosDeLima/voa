@@ -47,35 +47,35 @@ const Header = () => {
                 </Li>
               </div>
 
-              <div>
+              {/* <div>
                 <Li>
                   <LinkP href="#"> Sobre a VOAA </LinkP>
                 </Li>
-              </div>
+              </div> */}
 
-              <div>
+              {/* <div>
                 <Li>
                   <LinkP href="#"> Central de ajuda </LinkP>
                 </Li>
-              </div>
+              </div> */}
 
-              {user?.user == 0 ? (
+              {user?.admin == 1 && (
+                <div>
+                  <Link to="/minhas-campanhas">
+                    <Li>
+                      <LinkP> Minhas Campanhas </LinkP>
+                    </Li>
+                  </Link>
+                </div>
+              )}
+
+              {isAuthenticated() && (
                 <div>
                   <Li>
                     <LinkP href="#"> Minhas doações </LinkP>
                   </Li>
                 </div>
-              ) :
-                <div>
-                   <Link to="/minhas-campanhas">
-                  <Li>
-                    <LinkP> Minhas Campanhas </LinkP>
-                  </Li>
-              </Link>
-
-                </div>
-              }
-
+              )}
 
               {isAuthenticated() && (
                 <div>

@@ -9,11 +9,11 @@ export const moneyFormat = (value = 0) => {
 
 export const calculatePercentageNumber = (total, value) => {
   return total ? (100 * value) / total : 0;
-}
+};
 
 export const calculatePercentageString = (total, value) => {
   return total ? `${((100 * value) / total).toFixed(2)}%` : `0%`;
-}
+};
 
 export const daysRemaining = (deadline) => {
 
@@ -29,9 +29,19 @@ export const daysRemaining = (deadline) => {
   } else if (diff > 1) {
     return `${diff} dias restante`;
   }
-}
+};
 
+export const daysPast = (date) => {
+  const today = new Date();
+  const startMoment = moment(new Date(date));
+  const endMoment = moment(today);
+  const diff = endMoment.diff(startMoment, 'days');
 
-// export const dateFormat = date => {
-//   return moment(date).format('DD/MM/YYYY');
-// };
+  if (diff <= 0) {
+    return `Hoje`;
+  } else if (diff == 1) {
+    return `Ontem`;
+  } else if (diff > 1) {
+    return `a cerca de ${diff} dias`;
+  }
+};

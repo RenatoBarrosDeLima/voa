@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // API
 import api from '../../services/api';
@@ -63,7 +64,9 @@ const Campaigns = () => {
                 <Image src={campaign?.image} />
                 <TextH1>{campaign?.title}</TextH1>
                 <TextP>{campaign?.description}</TextP>
-                <Button>Acessar</Button>
+                <Link to={`/doadores/${campaign.id}`}>
+                  <Button>Acessar</Button>
+                </Link>
               </Body>
             )
           })}

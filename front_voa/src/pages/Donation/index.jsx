@@ -78,7 +78,7 @@ const Donation = () => {
         setLoading(false);
         return window.alert('Erro ao listar a campanha!');
       })
-  }, [])
+  }, []);
 
   const changeValue = (item) => {
     setValueSelected(item);
