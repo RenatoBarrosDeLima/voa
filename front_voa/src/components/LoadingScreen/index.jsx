@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Loader } from './styles';
+import { Container, Content } from './styles';
 
 const Loading = ({ loading }) => {
 
@@ -8,8 +8,14 @@ const Loading = ({ loading }) => {
 
   return (
     <Container>
-      <Loader />
+      <Content>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </Content>
     </Container>
+
   );
 };
 

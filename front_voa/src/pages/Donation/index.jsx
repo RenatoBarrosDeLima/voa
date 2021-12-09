@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 // API
 import api from '../../services/api';
 
-
 // FUNCTIONS UTILS
 import {
   daysRemaining,
@@ -70,14 +69,14 @@ const Donation = () => {
 
   useEffect(() => {
     setLoading(true);
-    api.get(`/campaigns/${query.get('id')}`)
+    api.get(`/campaigns/showCampaign/${query.get('id')}`)
       .then(response => {
         setCampaign(response?.data);
         setLoading(false);
       })
       .catch(err => {
         setLoading(false);
-        return window.alert('Erro ao listar as campanhas.');
+        return window.alert('Erro ao listar a campanha!');
       })
   }, [])
 

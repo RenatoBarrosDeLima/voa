@@ -7,6 +7,7 @@ import FinishDonation from "../pages/FinishDonation";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ProofPayment from "../pages/ProofPayment";
+import Campaigns from "../pages/Campaigns";
 
 const Routes = () => {
   return (
@@ -18,6 +19,7 @@ const Routes = () => {
         <Route path="/login" component={Login} />
         <Route path="/cadastro" component={Register} />
         <Route path="/comprovante" component={ProofPayment} />
+        <Route path="/minhas-campanhas" component={Campaigns} />
       </Switch>
     </BrowserRouter>
   )

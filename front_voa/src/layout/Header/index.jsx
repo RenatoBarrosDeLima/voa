@@ -21,6 +21,7 @@ import {
 const Header = () => {
   const history = useHistory();
   const { getAuth, isAuthenticated, removeAuth } = useAuth();
+  const user = getAuth();
 
   const handleLogout = () => {
     removeAuth();
@@ -58,11 +59,23 @@ const Header = () => {
                 </Li>
               </div>
 
-              <div>
-                <Li>
-                  <LinkP href="#"> Envie sua história </LinkP>
-                </Li>
-              </div>
+              {user?.user == 0 ? (
+                <div>
+                  <Li>
+                    <LinkP href="#"> Minhas doações </LinkP>
+                  </Li>
+                </div>
+              ) :
+                <div>
+                   <Link to="/minhas-campanhas">
+                  <Li>
+                    <LinkP> Minhas Campanhas </LinkP>
+                  </Li>
+              </Link>
+
+                </div>
+              }
+
 
               {isAuthenticated() && (
                 <div>
