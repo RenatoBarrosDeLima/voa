@@ -39,7 +39,7 @@ class DonationController {
       const donation = await Donation.findAll({
         where: { user_id },
         order: [['id', 'DESC']],
-        attributes: ['id', 'value', 'created_at'],
+        attributes: ['id', 'value', 'created_at', 'reversal'],
         include: {
           model: User,
           attributes: ['id', 'name', 'email', 'cpf', 'telephone'],
