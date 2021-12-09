@@ -71,9 +71,11 @@ const Header = () => {
 
               {isAuthenticated() && (
                 <div>
-                  <Li>
-                    <LinkP href="#"> Minhas doações </LinkP>
-                  </Li>
+                  <Link to="/minhas-doacoes">
+                    <Li>
+                      <LinkP href="#"> Minhas doações </LinkP>
+                    </Li>
+                  </Link>
                 </div>
               )}
 
