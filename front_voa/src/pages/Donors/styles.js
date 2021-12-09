@@ -34,10 +34,6 @@ export const GridTitle = styled.div`
 export const GridTitleCenter = styled.div`
     justify-content: center;
     display: flex;
-    flex-direction: row;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
 `;
 
 export const TextH1 = styled.h1`
@@ -46,6 +42,7 @@ export const TextH1 = styled.h1`
     font-weight: 600;
     color: rgb(132, 42, 136);
     padding-right: 10px;
+    margin-bottom: 0px;
 `;
 
 export const TextP = styled.p`
@@ -62,6 +59,12 @@ export const GridRow = styled.div`
     -webkit-box-pack: center;
     justify-content: center;
     align-items: flex-start;
+`;
+
+export const Row = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 `;
 
 export const Col = styled.div`
@@ -106,6 +109,7 @@ export const TextH4 = styled.h4`
     font-weight: 300;
     color: rgb(72, 72, 72);
     line-height: normal;
+    font-size: 20px;
 `;
 
 export const TextH5 = styled.h5`
@@ -124,4 +128,54 @@ export const Division = styled.div`
     background-color: rgb(227, 227, 227);
 `;
 
+export const Button = styled.a`
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    width: 10vw;
+    text-decoration: none;
+    height: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    border-radius: 50px;
+    max-width: 300px;
+    color: rgb(247, 248, 250);
+    background-image: linear-gradient(263deg, rgb(171, 49, 101) 10%, rgb(125, 42, 138) 100%);
+    background-color: rgb(123, 9, 126);
+    box-shadow: rgb(125 42 138 / 30%) 0px 12px 30px 0px;
+`;
 
+export const Label = styled.label`
+    margin-right: 20px;
+`;
+
+export const GridFilter = styled.div`
+    justify-content: center;
+    display: flex;
+    align-items: center;
+`;
+
+export const Checkbox = styled.input`
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+`;
+
+export const ButtonExport = styled.button`
+    border-radius: 5px;
+    background: #fff;
+`;
+
+export const Span = styled.span`
+    text-align: center;
+`;
+
+export const Export = styled.div`
+    display: grid;
+    margin-right: 10px;
+`;
