@@ -78,7 +78,25 @@ class CampaignController {
     }
   }
 
-  async campaignSearch(req, res) {
+  async campaignSearchUserAll(req, res) {
+    try {
+      const { user_id } = req.body;
+      const campaign = await Campaign.findAll({
+        where: { user_id },
+        order: [['id', 'DESC'], [Donation, 'id', 'DESC']],
+        attributes: ['id', 'title', 'description', 'image', 'goal', 'deadline', 'category', 'created_at'],
+        include: {
+          model: Donation,
+          attributes: [],
+        },
+      });
+      return res.json(campaign);
+    } catch (err) {
+      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+    }
+  }
+
+  async campaignDetails(req, res) {
     try {
       const { id } = req.params;
       const campaign = await Campaign.findByPk(id, {
@@ -105,7 +123,7 @@ class CampaignController {
       const campaign = await Campaign.findAll({
         where: { user_id, id: campaign_id },
         order: [['id', 'DESC'], [Donation, 'id', 'DESC']],
-        attributes: ['id', 'title', 'description', 'image', 'goal', 'deadline', 'category', 'created_at'],
+        attributes: ['id', 'title'],
         include: {
           model: Donation,
           attributes: ['id', 'value', 'created_at'],
