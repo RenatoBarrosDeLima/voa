@@ -116,8 +116,8 @@ Inicie o servidor.
 npm run dev
 ```
 
-> Teoricamente a aplicação irá na porta 3001
-> Caso deseja alterar essa porta, então é só modificar no arquivo: server.js, na linha 3
+> Teoricamente a aplicação irá na porta 3001.
+> Caso deseja alterar essa porta, então é só modificar no arquivo: server.js, na linha 3.
 > Caso a porta da api seja modificada, então o frontend deverar ser atualizado, modificando o arquivo .env do front e atulaizar a porta também.
 
 
