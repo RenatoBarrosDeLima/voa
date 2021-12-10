@@ -127,5 +127,5 @@ npm run dev
 
 Projeto desenvolvido inteiramente por mim, Renato Barros de Lima
 
-**Free Software, Hell Yeah!**
+**Free Software!**
 
