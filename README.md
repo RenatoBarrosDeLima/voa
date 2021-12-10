@@ -67,7 +67,7 @@ cd front_voa
 npm install
 npm start
 ```
-> Teoricamente a aplicação irá abrir em uma nova aba na porta 3000
+> Teoricamente a aplicação irá abrir em uma nova aba na porta 3000.
 > Caso a porta 3000 já esteja em uso irá abrir em uma outra porta disponível.
 
 ## Instação Backend
