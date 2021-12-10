@@ -61,6 +61,16 @@ const Header = () => {
 
               {user?.admin == 1 && (
                 <div>
+                  <Link to="/criar-campanha">
+                    <Li>
+                      <LinkP> Criar Campanha </LinkP>
+                    </Li>
+                  </Link>
+                </div>
+              )}
+
+              {user?.admin == 1 && (
+                <div>
                   <Link to="/minhas-campanhas">
                     <Li>
                       <LinkP> Minhas Campanhas </LinkP>

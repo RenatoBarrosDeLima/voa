@@ -24,9 +24,9 @@ class CampaignController {
         group: ['id'],
         include: {
           model: Donation,
-          where: {
-            status: 1,
-          },
+          // where: {
+          //   status: 1,
+          // },
           attributes: [],
         },
       });
@@ -65,9 +65,9 @@ class CampaignController {
         group: ['id'],
         include: {
           model: Donation,
-          where: {
-            status: 1,
-          },
+          // where: {
+          //   status: 1,
+          // },
           attributes: [],
         },
 
