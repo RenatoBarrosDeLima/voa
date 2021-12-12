@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 // API
 import api from '../../services/api';
@@ -77,25 +77,9 @@ const FinishDonation = () => {
   const handleFinishContribution = () => {
 
     if (isAuthenticated()) {
-      const body = {
-        value: cart?.value,
-        campaign_id: campaign?.id,
-        user_id: cart?.anonymous ? null : user?.id,
-      }
+
 
       setLoading(true);
-      api.post(`/donations`, {
-        ...body
-      })
-        .then(response => {
-          setLoading(false);
-        })
-        .catch(err => {
-          setLoading(false);
-          return window.alert('Erro ao finalizar a doação!');
-        })
-
-
       setFinish(true);
     } else {
       history.push('/login');
@@ -104,6 +88,49 @@ const FinishDonation = () => {
 
   const handlePayment = () => {
     history.push('/comprovante');
+  }
+
+  const choicePaymentMethod = () => {
+
+    const body = {
+      price: cart?.value,
+      name: "Testando ",
+      campaign_id: campaign?.id,
+      user_id: cart?.anonymous ? null : user?.id,
+    }
+
+    api.post(`/paypal/pay`, {
+      ...body
+    })
+      .then(response => {
+        setLoading(false);
+        if (response.status === 200) {
+          history.push(window.open(response.data.href));
+          // console.log(response.data)
+
+          // const win = window.open(response.data.href);
+          // win.focus();
+          // window.open(response.data.href);
+        }
+      })
+      .catch(err => {
+        setLoading(false);
+        return window.alert('Erro ao finalizar a doação!');
+      })
+
+    // api.post(`/donations`, {
+    //   ...body
+    // })
+    //   .then(response => {
+    //     setLoading(false);
+    //   })
+    //   .catch(err => {
+    //     setLoading(false);
+    //     return window.alert('Erro ao finalizar a doação!');
+    //   })
+
+    // console.log("body ", body)
+
   }
 
   return (
@@ -187,7 +214,7 @@ const FinishDonation = () => {
               {!finish ? (
                 <ButtonFinishContribution handleFinishContribution={handleFinishContribution} />
               ) :
-                <Payment handlePayment={handlePayment} />
+                <Payment choicePaymentMethod={choicePaymentMethod} />
               }
             </GridContainer>
           </Body>
