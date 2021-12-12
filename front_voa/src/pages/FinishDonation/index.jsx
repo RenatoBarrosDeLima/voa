@@ -87,15 +87,13 @@ const FinishDonation = () => {
     }
   }
 
-  const handlePayment = () => {
-    history.push('/comprovante');
-  }
-
   const choicePaymentMethod = () => {
+
+    setLoading(true);
 
     const body = {
       price: cart?.value,
-      name: "Testando ",
+      name: "Teste sandbox",
       campaign_id: campaign?.id,
       user_id: cart?.anonymous ? null : user?.id,
     }
@@ -106,33 +104,14 @@ const FinishDonation = () => {
       .then(response => {
         setLoading(false);
         if (response.status === 200) {
-          history.push(window.close());
-          history.push(window.open(response.data.href));
-          // console.log(response.data)
-
-          // const win = window.open(response.data.href);
-          // win.focus();
-          // window.open(response.data.href);
+          window.open(response.data.href, "_self");
+          window.close();
         }
       })
       .catch(err => {
         setLoading(false);
         return window.alert('Erro ao finalizar a doação!');
       })
-
-    // api.post(`/donations`, {
-    //   ...body
-    // })
-    //   .then(response => {
-    //     setLoading(false);
-    //   })
-    //   .catch(err => {
-    //     setLoading(false);
-    //     return window.alert('Erro ao finalizar a doação!');
-    //   })
-
-    // console.log("body ", body)
-
   }
 
   return (

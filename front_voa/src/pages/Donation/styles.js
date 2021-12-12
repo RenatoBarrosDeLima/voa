@@ -281,4 +281,10 @@ export const ButtonFinish = styled.a`
     border: none;
     outline: none;
     cursor: pointer;
+
+    :hover {
+      color: #fff;
+      box-shadow: 0px 0px 4px 4px  #e0abff;
+      transform: translateY(-1px);
+    }
 `;

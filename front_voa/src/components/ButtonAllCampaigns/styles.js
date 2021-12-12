@@ -31,4 +31,10 @@ export const ButtonA = styled.a`
     background-image: linear-gradient(263deg, rgb(171, 49, 101) 10%, rgb(125, 42, 138) 100%);
     background-color: rgb(123, 9, 126);
     box-shadow: rgb(125 42 138 / 30%) 0px 12px 30px 0px;
+
+    :hover {
+      color: #fff;
+      box-shadow: 0px 0px 4px 4px  #e0abff;
+      transform: translateY(-1px);
+    }
 `;

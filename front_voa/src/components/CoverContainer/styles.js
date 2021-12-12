@@ -110,5 +110,9 @@ export const Link = styled.a`
     outline: none;
     cursor: pointer;
     background-image: linear-gradient(122deg, rgb(204, 53, 119), rgb(247, 147, 30));
+
+    :hover {
+      color: #fff;
+    }
 `;
 
