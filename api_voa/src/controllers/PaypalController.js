@@ -70,7 +70,7 @@ class PaypalController {
         throw error;
       } else {
         console.log(JSON.stringify(payment));
-        return res.send('Pagamento efetuado com sucesso');
+        return res.redirect('http://localhost:3000/sucesso');
       }
     });
   }
