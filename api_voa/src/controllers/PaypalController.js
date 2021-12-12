@@ -1,15 +1,18 @@
 import paypal from 'paypal-rest-sdk';
+import Donation from '../models/Donation';
 
 class PaypalController {
   async pay(req, res) {
-    const { price = '', name } = req.body;
+    const {
+      price = '', name = '', campaign_id = '', user_id = '',
+    } = req.body;
     const create_payment_json = {
       intent: 'sale',
       payer: {
         payment_method: 'paypal',
       },
       redirect_urls: {
-        return_url: `http://localhost:${process.env.API_PORT}/paypal/sucess`,
+        return_url: `http://localhost:${process.env.API_PORT}/paypal/sucess?price=${price}&campaign_id=${campaign_id}&user_id=${user_id}&`,
         cancel_url: `http://localhost:${process.env.API_PORT}/paypal/cancel`,
       },
       transactions: [{
@@ -33,6 +36,7 @@ class PaypalController {
     // eslint-disable-next-line consistent-return
     paypal.payment.create(create_payment_json, (error, payment) => {
       if (error) {
+        console.log(error);
         throw error;
       } else {
         // eslint-disable-next-line no-plusplus
@@ -48,17 +52,16 @@ class PaypalController {
   async sucess(req, res) {
     const { PayerID } = req.query;
     const { paymentId } = req.query;
+    const { price } = req.query;
+    const { campaign_id } = req.query;
+    const { user_id } = req.query;
 
-    console.log(req.query);
+    await Donation.create({
+      value: price, campaign_id, user_id, reversal: 0, status: 1,
+    });
 
     const execute_payment_json = {
       payer_id: PayerID,
-      // transactions: [{
-      //   amount: {
-      //     currency: 'BRL',
-      //     total: '25.00',
-      //   },
-      // }],
     };
 
     paypal.payment.execute(paymentId, execute_payment_json, (error, payment) => {
