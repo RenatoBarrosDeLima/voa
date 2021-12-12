@@ -11,8 +11,8 @@ export const Content = styled.div`
     width: 100%;
     left: 0px;
     top: 0px;
-    z-index: 1000;
-    background-color: rgba(36, 36, 38, 0.6);
+    /* z-index: 1000; */
+    /* background-color: rgba(36, 36, 38, 0.6); */
     height: 300%;
 `;
 
@@ -28,6 +28,7 @@ export const Body = styled.div`
     position: fixed;
     left: 0px;
     padding-top: 20px;
+    margin-top: 80px;
 
     @media (min-width: 600px) {
         top: 0px;

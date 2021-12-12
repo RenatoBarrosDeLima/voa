@@ -11,6 +11,7 @@ import Campaigns from "../pages/Campaigns";
 import Donors from "../pages/Donors";
 import MyDonations from "../pages/MyDonations";
 import CreateCampaign from "../pages/CreateCampaign";
+import SuccessDonation from "../pages/SuccessDonation";
 
 const Routes = () => {
   return (
@@ -26,6 +27,7 @@ const Routes = () => {
         <Route path="/doadores/:id" component={Donors} />
         <Route path="/minhas-doacoes" component={MyDonations} />
         <Route path="/criar-campanha" component={CreateCampaign} />
+        <Route path="/sucesso" component={SuccessDonation} />
       </Switch>
     </BrowserRouter>
   )

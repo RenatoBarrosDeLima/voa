@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 // API
 import api from '../../services/api';
@@ -7,15 +7,11 @@ import api from '../../services/api';
 // FUNCTIONS UTILS
 import { moneyFormat } from '../../utils/functions';
 
-// HOOKS
-import { useCart } from '../../hooks/useCart';
-import { useAuth } from '../../hooks/useAuth';
-import { useCampaign } from '../../hooks/useCampaign';
-
 // COMPONENTES
 import ButtonFinishContribution from '../../components/ButtonFinishContribution';
 import Payment from '../../components/Payment';
 import Loading from '../../components/LoadingScreen';
+import Header from '../../layout/Header';
 
 // COMPONENTES CUSTOMIZADOS
 import {
@@ -47,7 +43,12 @@ import {
   GridColInlineTotal,
   TextH4Total,
   TextH4ValueTotal,
-} from './styles'
+} from './styles';
+
+// HOOKS
+import { useCart } from '../../hooks/useCart';
+import { useAuth } from '../../hooks/useAuth';
+import { useCampaign } from '../../hooks/useCampaign';
 
 const FinishDonation = () => {
 
@@ -105,6 +106,7 @@ const FinishDonation = () => {
       .then(response => {
         setLoading(false);
         if (response.status === 200) {
+          history.push(window.close());
           history.push(window.open(response.data.href));
           // console.log(response.data)
 
@@ -135,6 +137,7 @@ const FinishDonation = () => {
 
   return (
     <>
+      <Header />
       <Loading loading={loading} />
       <Container>
         <Content>
