@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import paypal from 'paypal-rest-sdk';
 
 dotenv.config();
 
@@ -11,6 +12,13 @@ import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
 import campaignRoutes from './src/routes/campaignRoutes';
 import donationRoutes from './src/routes/donationRoutes';
+import paypalRoutes from './src/routes/paypalRoutes';
+
+paypal.configure({
+  mode: 'sandbox', // sandbox or live
+  client_id: process.env.PAYPAL_SANDBOX_CLIENT_ID,
+  client_secret: process.env.PAYPAL_SANDBOX_SECRET,
+});
 
 class App {
   constructor() {
@@ -49,6 +57,7 @@ class App {
     this.app.use('/tokens', tokenRoutes);
     this.app.use('/campaigns', campaignRoutes);
     this.app.use('/donations', donationRoutes);
+    this.app.use('/paypal', paypalRoutes);
   }
 }
 
