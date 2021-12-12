@@ -57,7 +57,14 @@ class PaypalController {
     const { user_id } = req.query;
 
     await Donation.create({
-      value: price, campaign_id, user_id, reversal: 0, status: 1,
+      value: price,
+      campaign_id,
+      user_id,
+      reversal: 0,
+      status: 0,
+      payer_id: PayerID,
+      payment_id: paymentId,
+      payment_type: 1,
     });
 
     const execute_payment_json = {
