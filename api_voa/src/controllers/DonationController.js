@@ -20,7 +20,7 @@ class DonationController {
     try {
       const donation = await Donation.findByPk(req.params.id, {
         order: [['id', 'DESC']],
-        attributes: ['id', 'value', 'created_at'],
+        attributes: ['id', 'value', 'created_at', 'reversal', 'payer_id', 'payment_id', 'payment_type', 'payment', 'anonymous'],
         include: {
           model: User,
           attributes: ['id', 'name', 'email', 'cpf', 'telephone'],
@@ -39,7 +39,7 @@ class DonationController {
       const donation = await Donation.findAll({
         where: { user_id },
         order: [['id', 'DESC']],
-        attributes: ['id', 'value', 'created_at', 'reversal'],
+        attributes: ['id', 'value', 'created_at', 'reversal', 'payer_id', 'payment_id', 'payment_type', 'payment', 'anonymous'],
         include: {
           model: User,
           attributes: ['id', 'name', 'email', 'cpf', 'telephone'],

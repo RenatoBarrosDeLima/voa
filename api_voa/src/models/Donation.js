@@ -27,6 +27,14 @@ export default class Donation extends Model {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
+      payment: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+      },
+      anonymous: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
     }, {
       sequelize,
       tableName: 'donations',

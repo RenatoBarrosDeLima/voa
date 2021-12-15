@@ -126,7 +126,7 @@ class CampaignController {
         attributes: ['id', 'title'],
         include: {
           model: Donation,
-          attributes: ['id', 'value', 'created_at', 'reversal'],
+          attributes: ['id', 'value', 'created_at', 'reversal', 'payer_id', 'payment_id', 'payment_type', 'payment', 'anonymous'],
           include: {
             model: User,
             attributes: ['id', 'name', 'email', 'cpf', 'telephone'],
@@ -162,7 +162,7 @@ class CampaignController {
             },
             reversal,
           },
-          attributes: ['id', 'value', 'created_at', 'reversal'],
+          attributes: ['id', 'value', 'created_at', 'reversal', 'payer_id', 'payment_id', 'payment_type', 'payment', 'anonymous'],
           include: {
             model: User,
             attributes: ['id', 'name', 'email', 'cpf', 'telephone'],
