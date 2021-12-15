@@ -21,7 +21,7 @@ No Frontend foi utilizado as seguintes tecnologias:
 - 1 - Passo, Cadastro/Login de usuário, tendo a possíbilidade desse usuário informar sendo "ADMIN" isso lhe permitirar criar as suas próprias campanhas
 - 2 - Após o usuário criado e logado, caso ele seja ADMIM já poderá criar uma campanha ou participar das outras campanhas já existentes.
 - 3 - Caso deseja criar uma nova campanha é só clicar no menu "Criar campanha" e preencher o formulário.
-- 4 - Caso deseja fazer uma doação então é só escolher uma das campanhas exibidas e clicar, na tela seguinte deverá informar o valor tendo a opção de fazer a doação anônima. Na próxima etapa deverá confirmar a forma de pagamento. A princípio a única forma de pagamento é via Paypal no modo sandbox.
+- 4 - Caso deseja fazer uma doação então é só escolher uma das campanhas exibidas e clicar, na tela seguinte deverá informar o valor tendo a opção de fazer a doação anônima. Na próxima etapa deverá confirmar a forma de pagamento. A princípio a única forma de pagamento é via Paypal no modo sandbox. É necessário que o usuário tenha uma conta criada para realizar o pagamento.
 - 5 - Caso o usuário seja um "ADMIN" poderar consultar suas campanhas no menu "Minhas campanhas", fazer filtragem por doações anônimas ou por data e exportar no formato CSV.
 - 6 - Todos os usuário poderão consultar suas doações no menu "Minhas doações"
 
