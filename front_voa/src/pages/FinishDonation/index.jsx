@@ -95,7 +95,8 @@ const FinishDonation = () => {
       price: cart?.value,
       name: "Teste sandbox",
       campaign_id: campaign?.id,
-      user_id: cart?.anonymous ? null : user?.id,
+      user_id: user?.id,
+      anonymous: cart?.anonymous ? 1 : 0,
     }
 
     api.post(`/paypal/pay`, {

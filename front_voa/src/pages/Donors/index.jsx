@@ -100,18 +100,26 @@ const Donors = () => {
   };
 
   const handleReverse = (donation) => {
+    const payment_string = donation.payment;
+    const payment_object = JSON.parse(payment_string);
+    const cart = payment_object.transactions[0].related_resources[0].sale.id;
     const body = {
       id: donation.id,
-      reversal: 1,
-      status: 0
+      value: donation.value,
+      cart,
+      reversal: 1
     };
 
     setLoading(true);
-    api.put(`/donations`, {
+    api.post(`/paypal/reversal`, {
       ...body
     })
       .then(response => {
-        getDonations();
+        setLoading(false);
+        if (response.status === 200) {
+          getDonations();
+          return window.alert('Estornado com sucesso!');
+        }
       })
       .catch(err => {
         setLoading(false);
@@ -133,8 +141,6 @@ const Donors = () => {
       start_date: startDate,
       end_date: endDate,
     };
-
-    console.log(body)
 
     setLoading(true);
     api.post(`/campaigns/campaignSearchUserFilter`, {

@@ -12,6 +12,7 @@ import Donors from "../pages/Donors";
 import MyDonations from "../pages/MyDonations";
 import CreateCampaign from "../pages/CreateCampaign";
 import SuccessDonation from "../pages/SuccessDonation";
+import ErroDonation from "../pages/ErroDonation";
 
 const Routes = () => {
   return (
@@ -28,6 +29,7 @@ const Routes = () => {
         <Route path="/minhas-doacoes" component={MyDonations} />
         <Route path="/criar-campanha" component={CreateCampaign} />
         <Route path="/sucesso" component={SuccessDonation} />
+        <Route path="/erro" component={ErroDonation} />
       </Switch>
     </BrowserRouter>
   )

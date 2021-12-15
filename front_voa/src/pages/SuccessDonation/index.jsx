@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // COMPONENTES
 import Header from '../../layout/Header';
@@ -10,7 +11,9 @@ import {
   ContentIcon,
   Icon,
   TextH1,
-  TextP
+  TextP,
+  Col,
+  Button
 } from './styles';
 
 const SuccessDonation = () => {
@@ -24,6 +27,11 @@ const SuccessDonation = () => {
         </ContentIcon>
         <TextH1>Sucesso!</TextH1>
         <TextP>Obrigado pela doação</TextP>
+        <Col>
+            <Link to='/'>
+              <Button>Home</Button>
+            </Link>
+          </Col>
       </Card>
     </Container>
     </>

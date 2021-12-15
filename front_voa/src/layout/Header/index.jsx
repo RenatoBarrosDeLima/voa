@@ -32,7 +32,7 @@ const Header = () => {
     <Container>
       <Content>
         <Items>
-          <Left href="#">
+          <Left>
             <div style={{ display: 'inline-block', maxWidth: '100%', overflow: 'hidden', position: 'relative', boxSizing: 'border-box', margin: '0px' }}>
               <img style={{ maxWidth: '100%', display: 'block', margin: '0px', border: 'none', padding: '0px' }} src={"https://voaa.me/_next/image?url=%2Fimages%2Fheader-logo.svg&w=256&q=75"} />
             </div>
@@ -42,22 +42,10 @@ const Header = () => {
               <div>
                 <Li>
                   <Link to="/">
-                    <LinkP href="#"> Home </LinkP>
+                    <LinkP> Home </LinkP>
                   </Link>
                 </Li>
               </div>
-
-              {/* <div>
-                <Li>
-                  <LinkP href="#"> Sobre a VOAA </LinkP>
-                </Li>
-              </div> */}
-
-              {/* <div>
-                <Li>
-                  <LinkP href="#"> Central de ajuda </LinkP>
-                </Li>
-              </div> */}
 
               {user?.admin == 1 && (
                 <div>
@@ -83,7 +71,7 @@ const Header = () => {
                 <div>
                   <Link to="/minhas-doacoes">
                     <Li>
-                      <LinkP href="#"> Minhas doações </LinkP>
+                      <LinkP> Minhas doações </LinkP>
                     </Li>
                   </Link>
                 </div>
