@@ -10,6 +10,7 @@ No Backend foi utilizado as seguintes tecnologias:
 - Express
 - Sequelize
 - MySql
+- API de pagamento do PAYPAL
 
 No Frontend foi utilizado as seguintes tecnologias:
 - React JS
