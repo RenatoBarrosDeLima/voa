@@ -1,8 +1,8 @@
 # VOAA
 ## Projeto Voaa
 
-[![N|Solid](https://voaa.me/_next/image?url=%2Fimages%2Fheader-logo.svg&w=256&q=75)](https://voaa.me)
-O projeto foi elaborado com a stack de javascript, tanto no backend quanto o frontend.
+Este projeto foi desenvolvido como fins de aprendizado, sendo que uma plataforma de doações onlines, contendo tanto o projeto do backend feito com NODE JS como também o frontend feito com REACT JS.
+A responsividade do site não foi implementada até está presente data.
 
 ## Stack
 No Backend foi utilizado as seguintes tecnologias:
