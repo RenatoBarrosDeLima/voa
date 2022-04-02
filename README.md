@@ -1,7 +1,7 @@
 # VOAA
 ## Projeto Voaa
 
-Este projeto foi desenvolvido como fins de aprendizado, sendo que uma plataforma de doações onlines, contendo tanto o projeto do backend feito com NODE JS como também o frontend feito com REACT JS.
+Este projeto foi desenvolvido como fins metodológicos, sendo que uma plataforma de doações onlines, contendo tanto o projeto do backend feito com NODE JS como também o frontend feito com REACT JS.
 A responsividade do site não foi implementada até está presente data.
 
 ## Stack
